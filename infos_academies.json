@@ -1,0 +1,10 @@
+[
+    {
+        "email": "nicholasdavid35@example.com",
+        "password": "academyPassword",
+        "director": "Ablo Nicholas",
+        "place": "Rue 2618, Haie Vive, Cotonou, Bénin",
+        "academy": "Complexe scolaire Lisa Torres",
+        "type_user": "academy"
+    }
+]

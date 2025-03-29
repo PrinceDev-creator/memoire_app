@@ -1,0 +1,15 @@
+django
+psycopg2
+djangorestframework
+django-filter
+django-rest-auth
+django-cors-headers
+flask
+django-extensions
+djangorestframework-simplejwt
+dj-rest-auth
+django-allauth
+django-environ
+faker
+numpy
+pandas

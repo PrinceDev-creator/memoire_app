@@ -1,0 +1,256 @@
+Je vais te montrer comment structurer l'API Django pour recevoir et traiter le type d'utilisateur (`type_user`), puis je vais te donner le code Flutter correspondant.
+
+---
+
+### **1. API Django (DRF)**
+On va créer une vue API pour gérer la création des utilisateurs en fonction du type choisi.
+
+#### **Modèle `UserApp`**
+```python
+from django.contrib.auth.models import AbstractUser
+from django.db import models
+
+class UserApp(AbstractUser):
+    is_academy = models.BooleanField(default=False)
+    is_teacher = models.BooleanField(default=False)
+    is_tutor = models.BooleanField(default=False)
+```
+
+#### **Modèles `Academy`, `Teacher`, `Tutor`**
+```python
+class Academy(models.Model):
+    user = models.OneToOneField(UserApp, on_delete=models.CASCADE, related_name='academy')
+    academy = models.CharField(max_length=100)
+
+class Teacher(models.Model):
+    user = models.OneToOneField(UserApp, on_delete=models.CASCADE, related_name='teacher')
+    subject = models.CharField(max_length=100)
+
+class Tutor(models.Model):
+    user = models.OneToOneField(UserApp, on_delete=models.CASCADE, related_name='tutor')
+    expertise = models.CharField(max_length=100)
+```
+
+#### **Serializer pour l'inscription**
+```python
+from rest_framework import serializers
+from .models import UserApp, Academy, Teacher, Tutor
+
+class UserRegistrationSerializer(serializers.ModelSerializer):
+    type_user = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = UserApp
+        fields = ['username', 'email', 'password', 'type_user']
+
+    def create(self, validated_data):
+        type_user = validated_data.pop("type_user")
+        user = UserApp.objects.create_user(**validated_data)
+
+        if type_user == "academy":
+            user.is_academy = True
+            user.save()
+            Academy.objects.create(user=user, academy="Default Academy")
+        
+        elif type_user == "teacher":
+            user.is_teacher = True
+            user.save()
+            Teacher.objects.create(user=user, subject="Mathematics")
+
+        elif type_user == "tutor":
+            user.is_tutor = True
+            user.save()
+            Tutor.objects.create(user=user, expertise="Science")
+
+        return user
+```
+
+#### **Vue API**
+```python
+from rest_framework.generics import CreateAPIView
+from .models import UserApp
+from .serializers import UserRegistrationSerializer
+
+class UserRegisterView(CreateAPIView):
+    queryset = UserApp.objects.all()
+    serializer_class = UserRegistrationSerializer
+```
+
+#### **URL**
+```python
+from django.urls import path
+from .views import UserRegisterView
+
+urlpatterns = [
+    path('register/', UserRegisterView.as_view(), name='register'),
+]
+```
+
+---
+
+### **2. Flutter (Frontend)**
+Voici le code Flutter correspondant.
+
+#### **DropdownButton pour sélectionner le type d'utilisateur**
+```dart
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'User Type Selection',
+      home: UserTypeSelection(),
+    );
+  }
+}
+
+class UserTypeSelection extends StatefulWidget {
+  @override
+  _UserTypeSelectionState createState() => _UserTypeSelectionState();
+}
+
+class _UserTypeSelectionState extends State<UserTypeSelection> {
+  String? selectedUserType;
+
+  void navigateToForm() {
+    if (selectedUserType != null) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => UserFormPage(userType: selectedUserType!),
+        ),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Sélection du type d'utilisateur")),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            DropdownButton<String>(
+              hint: Text("Choisir un type d'utilisateur"),
+              value: selectedUserType,
+              items: ["academy", "teacher", "tutor"]
+                  .map((type) => DropdownMenuItem(
+                        value: type,
+                        child: Text(type.toUpperCase()),
+                      ))
+                  .toList(),
+              onChanged: (value) {
+                setState(() {
+                  selectedUserType = value;
+                });
+              },
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: navigateToForm,
+              child: Text("Suivant"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+
+#### **Page de formulaire qui garde en mémoire le type d'utilisateur**
+```dart
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+class UserFormPage extends StatefulWidget {
+  final String userType;
+
+  UserFormPage({required this.userType});
+
+  @override
+  _UserFormPageState createState() => _UserFormPageState();
+}
+
+class _UserFormPageState extends State<UserFormPage> {
+  final _formKey = GlobalKey<FormState>();
+  String username = '';
+  String email = '';
+  String password = '';
+
+  Future<void> registerUser() async {
+    final response = await http.post(
+      Uri.parse('http://localhost:8000/api/register/'),
+      headers: {"Content-Type": "application/json"},
+      body: jsonEncode({
+        "username": username,
+        "email": email,
+        "password": password,
+        "type_user": widget.userType
+      }),
+    );
+
+    if (response.statusCode == 201) {
+      print("Utilisateur enregistré avec succès !");
+    } else {
+      print("Erreur lors de l'enregistrement: ${response.body}");
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Formulaire ${widget.userType.toUpperCase()}")),
+      body: Form(
+        key: _formKey,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              TextFormField(
+                decoration: InputDecoration(labelText: "Nom d'utilisateur"),
+                onChanged: (value) => username = value,
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: "Email"),
+                onChanged: (value) => email = value,
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: "Mot de passe"),
+                obscureText: true,
+                onChanged: (value) => password = value,
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: registerUser,
+                child: Text("S'inscrire"),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+
+---
+
+### **Explication**
+1. **Backend Django :**
+   - Création d'un utilisateur avec `type_user` pour déterminer s'il s'agit d'une `Academy`, `Teacher` ou `Tutor`.
+   - Les modèles correspondants sont créés automatiquement après l'inscription.
+
+2. **Frontend Flutter :**
+   - L'utilisateur choisit son type dans un `DropdownButton`.
+   - Il est redirigé vers un formulaire correspondant à son choix.
+   - Après soumission, les données sont envoyées à l'API Django via `http.post`.
+
+Ainsi, l'API et l'application Flutter sont bien connectées pour gérer l'inscription des utilisateurs selon leur type.

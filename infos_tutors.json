@@ -1,0 +1,9 @@
+[
+    {
+        "email": "haleyjennifertownsend@example.com",
+        "password": "tutorPassword",
+        "first_name": "James",
+        "last_name": "Agbessi",
+        "type_user": "tutor"
+    }
+]

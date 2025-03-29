@@ -1,0 +1,11 @@
+[
+    {
+        "email": "paulgschroeder@example.net",
+        "password": "teacherPassword",
+        "first_name": "Alyssa",
+        "last_name": "Hounsa",
+        "starting_year_in_academy": "2021-10-04",
+        "title": "Professeur titulaire et conseiller pédagogique",
+        "type_user": "teacher"
+    }
+]

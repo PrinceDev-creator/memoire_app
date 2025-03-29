@@ -1,0 +1,586 @@
+Watching for file changes with StatReloader
+System check identified some issues:
+
+WARNINGS:
+?: settings.ACCOUNT_LOGIN_METHODS is deprecated, use: settings.ACCOUNT_LOGIN_METHODS = {'username'}
+
+System check identified 1 issue (0 silenced).
+Internal Server Error: /user/register/
+Traceback (most recent call last):
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/users/views.py", line 74, in create
+    if serializer.is_valid():
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 442, in run_validation
+    value = self.to_internal_value(data)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 495, in to_internal_value
+    for field in fields:
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 378, in _writable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 372, in fields
+    for key, value in self.get_fields().items():
+                      ^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1079, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1175, in get_field_names
+    assert field_name in fields, (
+           ^^^^^^^^^^^^^^^^^^^^
+AssertionError: The field 'academy_id' was declared on serializer UserSerializer, but has not been included in the 'fields' option.
+[14/Mar/2025 20:14:20] "POST /user/register/ HTTP/1.1" 500 146011
+Internal Server Error: /user/register/
+Traceback (most recent call last):
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/users/views.py", line 74, in create
+    if serializer.is_valid():
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 442, in run_validation
+    value = self.to_internal_value(data)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 495, in to_internal_value
+    for field in fields:
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 378, in _writable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 372, in fields
+    for key, value in self.get_fields().items():
+                      ^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1079, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1175, in get_field_names
+    assert field_name in fields, (
+           ^^^^^^^^^^^^^^^^^^^^
+AssertionError: The field 'academy_id' was declared on serializer UserSerializer, but has not been included in the 'fields' option.
+[14/Mar/2025 20:14:21] "POST /user/register/ HTTP/1.1" 500 146011
+Internal Server Error: /user/register/
+Traceback (most recent call last):
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/users/views.py", line 74, in create
+    if serializer.is_valid():
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 442, in run_validation
+    value = self.to_internal_value(data)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 495, in to_internal_value
+    for field in fields:
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 378, in _writable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 372, in fields
+    for key, value in self.get_fields().items():
+                      ^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1079, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1175, in get_field_names
+    assert field_name in fields, (
+           ^^^^^^^^^^^^^^^^^^^^
+AssertionError: The field 'academy_id' was declared on serializer UserSerializer, but has not been included in the 'fields' option.
+[14/Mar/2025 20:14:22] "POST /user/register/ HTTP/1.1" 500 146011
+Internal Server Error: /user/register/
+Traceback (most recent call last):
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/users/views.py", line 74, in create
+    if serializer.is_valid():
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 442, in run_validation
+    value = self.to_internal_value(data)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 495, in to_internal_value
+    for field in fields:
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 378, in _writable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 372, in fields
+    for key, value in self.get_fields().items():
+                      ^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1079, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1175, in get_field_names
+    assert field_name in fields, (
+           ^^^^^^^^^^^^^^^^^^^^
+AssertionError: The field 'academy_id' was declared on serializer UserSerializer, but has not been included in the 'fields' option.
+[14/Mar/2025 20:14:22] "POST /user/register/ HTTP/1.1" 500 146011
+Internal Server Error: /user/register/
+Traceback (most recent call last):
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/users/views.py", line 74, in create
+    if serializer.is_valid():
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 442, in run_validation
+    value = self.to_internal_value(data)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 495, in to_internal_value
+    for field in fields:
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 378, in _writable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 372, in fields
+    for key, value in self.get_fields().items():
+                      ^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1079, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1175, in get_field_names
+    assert field_name in fields, (
+           ^^^^^^^^^^^^^^^^^^^^
+AssertionError: The field 'academy_id' was declared on serializer UserSerializer, but has not been included in the 'fields' option.
+[14/Mar/2025 20:14:23] "POST /user/register/ HTTP/1.1" 500 146011
+Internal Server Error: /user/register/
+Traceback (most recent call last):
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/users/views.py", line 74, in create
+    if serializer.is_valid():
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 442, in run_validation
+    value = self.to_internal_value(data)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 495, in to_internal_value
+    for field in fields:
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 378, in _writable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 372, in fields
+    for key, value in self.get_fields().items():
+                      ^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1079, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1175, in get_field_names
+    assert field_name in fields, (
+           ^^^^^^^^^^^^^^^^^^^^
+AssertionError: The field 'academy_id' was declared on serializer UserSerializer, but has not been included in the 'fields' option.
+[14/Mar/2025 20:14:24] "POST /user/register/ HTTP/1.1" 500 146013
+Internal Server Error: /user/register/
+Traceback (most recent call last):
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/users/views.py", line 74, in create
+    if serializer.is_valid():
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 442, in run_validation
+    value = self.to_internal_value(data)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 495, in to_internal_value
+    for field in fields:
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 378, in _writable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 372, in fields
+    for key, value in self.get_fields().items():
+                      ^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1079, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1175, in get_field_names
+    assert field_name in fields, (
+           ^^^^^^^^^^^^^^^^^^^^
+AssertionError: The field 'academy_id' was declared on serializer UserSerializer, but has not been included in the 'fields' option.
+[14/Mar/2025 20:14:25] "POST /user/register/ HTTP/1.1" 500 146009
+Internal Server Error: /user/register/
+Traceback (most recent call last):
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/users/views.py", line 74, in create
+    if serializer.is_valid():
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 442, in run_validation
+    value = self.to_internal_value(data)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 495, in to_internal_value
+    for field in fields:
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 378, in _writable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 372, in fields
+    for key, value in self.get_fields().items():
+                      ^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1079, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1175, in get_field_names
+    assert field_name in fields, (
+           ^^^^^^^^^^^^^^^^^^^^
+AssertionError: The field 'academy_id' was declared on serializer UserSerializer, but has not been included in the 'fields' option.
+[14/Mar/2025 20:14:25] "POST /user/register/ HTTP/1.1" 500 146011
+Internal Server Error: /user/register/
+Traceback (most recent call last):
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/users/views.py", line 74, in create
+    if serializer.is_valid():
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 442, in run_validation
+    value = self.to_internal_value(data)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 495, in to_internal_value
+    for field in fields:
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 378, in _writable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 372, in fields
+    for key, value in self.get_fields().items():
+                      ^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1079, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1175, in get_field_names
+    assert field_name in fields, (
+           ^^^^^^^^^^^^^^^^^^^^
+AssertionError: The field 'academy_id' was declared on serializer UserSerializer, but has not been included in the 'fields' option.
+Internal Server Error: /user/register/
+Traceback (most recent call last):
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/users/views.py", line 74, in create
+    if serializer.is_valid():
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 442, in run_validation
+    value = self.to_internal_value(data)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 495, in to_internal_value
+    for field in fields:
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 378, in _writable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 372, in fields
+    for key, value in self.get_fields().items():
+                      ^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1079, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1175, in get_field_names
+    assert field_name in fields, (
+           ^^^^^^^^^^^^^^^^^^^^
+AssertionError: The field 'academy_id' was declared on serializer UserSerializer, but has not been included in the 'fields' option.
+[14/Mar/2025 20:14:38] "POST /user/register/ HTTP/1.1" 500 146013
+/home/prince/Documents/programmation/projects/edutrack_django/edutrack/edutrack/settings.py changed, reloading.
+Performing system checks...
+
+March 14, 2025 - 20:13:57
+Django version 5.1.7, using settings 'edutrack.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+System check identified some issues:
+
+WARNINGS:
+?: settings.ACCOUNT_LOGIN_METHODS is deprecated, use: settings.ACCOUNT_LOGIN_METHODS = {'username'}
+
+System check identified 1 issue (0 silenced).
+/home/prince/Documents/programmation/projects/edutrack_django/edutrack/users/models.py changed, reloading.
+Performing system checks...
+
+March 14, 2025 - 20:48:55
+Django version 5.1.7, using settings 'edutrack.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+System check identified some issues:
+
+WARNINGS:
+?: settings.ACCOUNT_LOGIN_METHODS is deprecated, use: settings.ACCOUNT_LOGIN_METHODS = {'username'}
+
+System check identified 1 issue (0 silenced).
+/home/prince/Documents/programmation/projects/edutrack_django/edutrack/users/models.py changed, reloading.
+Performing system checks...
+
+March 14, 2025 - 21:18:35
+Django version 5.1.7, using settings 'edutrack.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+System check identified some issues:
+
+WARNINGS:
+?: settings.ACCOUNT_LOGIN_METHODS is deprecated, use: settings.ACCOUNT_LOGIN_METHODS = {'username'}
+
+System check identified 1 issue (0 silenced).
+/home/prince/Documents/programmation/projects/edutrack_django/edutrack/users/serializers.py changed, reloading.
+Performing system checks...
+
+March 14, 2025 - 21:21:15
+Django version 5.1.7, using settings 'edutrack.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+System check identified some issues:
+
+WARNINGS:
+?: settings.ACCOUNT_LOGIN_METHODS is deprecated, use: settings.ACCOUNT_LOGIN_METHODS = {'username'}
+
+System check identified 1 issue (0 silenced).
