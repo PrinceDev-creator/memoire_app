@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Bulletin Scolaire</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; }
+        .header { margin-bottom: 20px; }
+        .footer { margin-top: 20px; font-style: italic; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <p>Cher parent/tuteur</p>
+    </div>
+    
+    <div class="content">
+        <p>Vous trouverez ci-joint le bulletin scolaire de <strong>{{ student.first_name }} {{ student.last_name }}</strong>
+        pour l'année scolaire {{ academic_year }} ({{ level.name }}).</p>
+        
+        <p><strong>Moyenne générale :</strong> {{ report_data.moyenne_generale }}/20 - {{ report_data.appreciation_generale }}</p>
+        
+        <p>Pour toute question concernant ce bulletin, veuillez contacter l'établissement scolaire.</p>
+    </div>
+    
+    <div class="footer">
+        <p>Cordialement,</p>
+        <p>L'équipe pédagogique<br>
+        {{ report_data.school.name }}</p>
+    </div>
+</body>
+</html>

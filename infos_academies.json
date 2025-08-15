@@ -1,10 +1,18 @@
 [
     {
-        "email": "nicholasdavid35@example.com",
-        "password": "academyPassword",
-        "director": "Ablo Nicholas",
-        "place": "Rue 2618, Haie Vive, Cotonou, Bénin",
-        "academy": "Complexe scolaire Lisa Torres",
+        "email": "petertanyaking@example.net",
+        "password": "123456$Aa",
+        "director": "Kodjo Peter",
+        "place": "Avenue Steinmetz, Cotonou, Bénin",
+        "academy": "Lycée Patrick Sanders",
+        "type_user": "academy"
+    },
+    {
+        "email": "vincentlaura51@example.net",
+        "password": "123456$Aa",
+        "director": "Alladatin Vincent",
+        "place": "Avenue Steinmetz, Cotonou, Bénin",
+        "academy": "CEG Corey Cox",
         "type_user": "academy"
     }
 ]

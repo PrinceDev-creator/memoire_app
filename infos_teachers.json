@@ -1,11 +1,102 @@
 [
     {
-        "email": "paulgschroeder@example.net",
-        "password": "teacherPassword",
-        "first_name": "Alyssa",
-        "last_name": "Hounsa",
-        "starting_year_in_academy": "2021-10-04",
+        "email": "grubfan67@gmail.com",
+        "password": "123456$Aa",
+        "first_name": "Dennis",
+        "last_name": "Dossou-Yovo",
+        "starting_year_in_academy": "2015-06-03",
+        "title": "Professeur vacataire",
+        "type_user": "teacher",
+        "phone_number": "434.368.4913"
+    },
+    {
+        "email": "grubfan67@gmail.com",
+        "password": "123456$Aa",
+        "first_name": "John",
+        "last_name": "Soglo",
+        "starting_year_in_academy": "2016-07-29",
+        "title": "Professeur vacataire",
+        "type_user": "teacher",
+        "phone_number": "+1-310-560-5511"
+    },
+    {
+        "email": "grubfan67@gmail.com",
+        "password": "123456$Aa",
+        "first_name": "Julie",
+        "last_name": "Zossou",
+        "starting_year_in_academy": "2017-03-14",
+        "title": "Conseiller pédagogique",
+        "type_user": "teacher",
+        "phone_number": "688.563.4734"
+    },
+    {
+        "email": "grubfan67@gmail.com",
+        "password": "123456$Aa",
+        "first_name": "Megan",
+        "last_name": "Gandonou",
+        "starting_year_in_academy": "2017-03-20",
+        "title": "Professeur vacataire",
+        "type_user": "teacher",
+        "phone_number": "001-257-964-2671x039"
+    },
+    {
+        "email": "grubfan67@gmail.com",
+        "password": "123456$Aa",
+        "first_name": "Renee",
+        "last_name": "Adanhoumé",
+        "starting_year_in_academy": "2019-01-11",
         "title": "Professeur titulaire et conseiller pédagogique",
-        "type_user": "teacher"
+        "type_user": "teacher",
+        "phone_number": "809.867.2105x351"
+    },
+    {
+        "email": "grubfan67@gmail.com",
+        "password": "123456$Aa",
+        "first_name": "Christine",
+        "last_name": "Gbédji",
+        "starting_year_in_academy": "2020-07-28",
+        "title": "Professeur titulaire et conseiller pédagogique",
+        "type_user": "teacher",
+        "phone_number": "622.862.0015"
+    },
+    {
+        "email": "grubfan67@gmail.com",
+        "password": "123456$Aa",
+        "first_name": "Isaac",
+        "last_name": "Aké",
+        "starting_year_in_academy": "2020-09-02",
+        "title": "Professeur vacataire",
+        "type_user": "teacher",
+        "phone_number": "425.546.7120x7997"
+    },
+    {
+        "email": "grubfan67@gmail.com",
+        "password": "123456$Aa",
+        "first_name": "Daniel",
+        "last_name": "Dahouénon",
+        "starting_year_in_academy": "2020-10-18",
+        "title": "Professeur vacataire",
+        "type_user": "teacher",
+        "phone_number": "631.247.8183"
+    },
+    {
+        "email": "grubfan67@gmail.com",
+        "password": "123456$Aa",
+        "first_name": "Christina",
+        "last_name": "Sènou",
+        "starting_year_in_academy": "2018-10-25",
+        "title": "Conseiller pédagogique",
+        "type_user": "teacher",
+        "phone_number": "881-804-2149"
+    },
+    {
+        "email": "grubfan67@gmail.com",
+        "password": "123456$Aa",
+        "first_name": "Brittany",
+        "last_name": "Kpakpo",
+        "starting_year_in_academy": "2018-03-21",
+        "title": "Conseiller pédagogique",
+        "type_user": "teacher",
+        "phone_number": "+1-529-795-0076"
     }
 ]

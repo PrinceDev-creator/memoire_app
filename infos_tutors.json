@@ -1,9 +1,29 @@
 [
     {
-        "email": "haleyjennifertownsend@example.com",
-        "password": "tutorPassword",
-        "first_name": "James",
-        "last_name": "Agbessi",
-        "type_user": "tutor"
+        "email": "karlamillerdavid@example.org",
+        "password": "123456$Aa",
+        "first_name": "Jerry",
+        "last_name": "Kpakpo",
+        "type_user": "tutor",
+        "phone_number": "4936450978",
+        "address": "868 Dixon Prairie Apt. 597\nEast Christine, SD 59742"
+    },
+    {
+        "email": "raymondclarkcassidy@example.org",
+        "password": "123456$Aa",
+        "first_name": "Michelle",
+        "last_name": "Adjavon",
+        "type_user": "tutor",
+        "phone_number": "+1-919-255-9781x50989",
+        "address": "53459 Mckenzie Trail\nEast Kimberly, WI 09993"
+    },
+    {
+        "email": "kyleavilareginald@example.com",
+        "password": "123456$Aa",
+        "first_name": "Justin",
+        "last_name": "Gandonou",
+        "type_user": "tutor",
+        "phone_number": "681-980-9079x31188",
+        "address": "327 Joseph Haven\nHopkinsstad, WY 49388"
     }
 ]

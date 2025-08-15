@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des écoles pré-enrégistrées</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .no-data {
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+        }
+        .accept-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .reject-btn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        form {
+            display: inline;
+            margin: 0;
+        }
+        .action-form {
+            display: inline;
+            margin: 0 20px;
+        }
+        .register-text-accepted{
+            color : green;
+        }
+        .register-text-refused{
+            color : red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Liste des écoles pré-enrégistrées</h1>
+    
+    {% if pre_schools %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom de l'école</th>
+                    <th>Adresse</th>
+                    <th>Directeur</th>
+                    <th>Email</th>
+                    <th>Téléphone</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pre_school in pre_schools %}
+                <tr>
+                    <td>{{ pre_school.school_name }}</td>
+                    <td>{{ pre_school.address }}</td>
+                    <td>{{ pre_school.director }}</td>
+                    <td><a href="mailto:{{ pre_school.email }}">{{ pre_school.email }}</a></td>
+                    <td>{{ pre_school.phone_number }}</td>
+                    <td class="action-buttons">
+                        {% if pre_school.state is None %}
+                            <form method="post" action="{% url 'custom-register' %}" class="action-form">
+                                {% csrf_token %}
+                                <input type="hidden" name="preg_id" value="{{ pre_school.id}}">
+                                <input type="hidden" name="school_name" value="{{ pre_school.school_name }}">
+                                <input type="hidden" name="address" value="{{ pre_school.address }}">
+                                <input type="hidden" name="director" value="{{ pre_school.director }}">
+                                <input type="hidden" name="email" value="{{ pre_school.email }}">
+                                <input type="hidden" name="phone_number" value="{{pre_school.phone_number}}">
+                                <input type="hidden" name="type_user" value="academy">
+                                {% comment %} <input type="hidden" name="accepted" value=True> {% endcomment %}
+                                {% comment %} <input type="hidden" name="password" value="{{pre_school.password}}"> {% endcomment %}
+                                <button type="submit" class="accept-btn">Accepter</button>
+                            </form>
+
+                            <form method="post" action="{% url 'reject_registration' %}" class="reject-form">
+                                {% csrf_token %}
+                                <input type="hidden" name="preg_id" value="{{ pre_school.id }}">
+                                <input type="hidden" name="email" value="{{ pre_school.email }}">
+                                <button type="submit" class="reject-btn">Refuser</button>
+                            </form>
+                        {% elif pre_school.state %}
+                            <span class="register-text-accepted">Acceptée</span>    
+                        {% elif not pre_school.state %}
+                            <span class="register-text-refused">Refusée</span>
+                        {% endif %}
+                        {% comment %} <form method="post" action="{% url 'accept_pre_school' pre_school.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="accept-btn">Accepter</button> {% endcomment %}
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="no-data">Aucune école n'est enregistrée pour le moment.</p>
+    {% endif %}
+
+    <script>
+        // Optionnel: Confirmation avant envoi
+        document.querySelectorAll('.accept-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (!confirm('Confirmez-vous l\'acceptation de cette école ?')) {
+                    e.preventDefault();
+                }
+            });
+        });
+
+        document.querySelectorAll('.reject-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (!confirm('Confirmez-vous le refus de cette école ?')) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

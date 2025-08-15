@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accusé de réception - Votre demande</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #4a6fa5;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px 5px 0 0;
+        }
+        .content {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-top: none;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #666;
+            text-align: center;
+        }
+        .signature {
+            margin-top: 30px;
+            font-style: italic;
+        }
+        .button {
+            display: inline-block;
+            background-color: #4a6fa5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .elegant-list {
+            list-style-type: none;
+            padding-left: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .elegant-list li:before {
+            content: "•";
+            color: #2c3e50;
+            font-weight: bold;
+            display: inline-block; 
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        .section-title {
+            font-family: 'Georgia', serif;
+            color: #2c3e50;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 0.5rem;
+        }
+
+        .verification-step {
+            margin-bottom: 2rem;
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 4px;
+        }
+
+        .notice {
+            font-style: italic;
+            color: #555;
+            border-left: 3px solid #3498db;
+            padding-left: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Accusé de réception</h1>
+    </div>
+    
+    <div class="content">
+        <p>Madame, Monsieur le Directeur,</p>
+        
+        <p>Nous accusons réception de votre demande concernant <strong>l'inscription de votre école sur la Plateforme EduNotes</strong> 
+        en date du {{ date }}.</p>
+        
+        <p>Votre dossier a été transmis à notre équipe technique qui procédera à une analyse approfondie 
+        dans les meilleurs délais.</p>
+        
+        <p>Voici la prochaine étape :</p>
+        <div class="verification-process">
+    <h2 class="section-title">Protocole de Vérification Institutionnelle</h2>
+    
+    <div>
+        <h3>Rencontre de Validation</h3>
+        <p>Afin de garantir l'intégrité de notre plateforme éducative, nous procéderons à une rencontre en vos locaux, où nous aborderons les points suivants :</p>
+        <ul>
+            <li>Vérification des documents d'accréditation de l'établissement</li>
+            <li>Authentification de votre fonction directoriale</li>
+            <li>Visite des installations pédagogiques</li>
+        </ul>
+    </div>
+
+    <div>
+        <h3>Documents Requis</h3>
+        <p>Pour fluidifier le processus, merci de préparer :</p>
+        <ul>
+            <li>Arrêté de nomination en qualité de directeur</li>
+            <li>Justificatif d'habilitation de l'établissement</li>
+            <li>Document attestant de la capacité d'inscription des élèves</li>
+        </ul>
+    </div>
+
+    <div class="notice">
+        <p><em>Cette démarche s'inscrit dans notre engagement qualité et notre politique de sécurité renforcée pour la protection de la communauté éducative.</em></p>
+    </div>
+    </div>
+        
+        <p>Vous recevrez une notification dès que votre dossier aura été traité.</p>
+        
+        <div class="signature">
+            <p>Cordialement,</p>
+            <p><strong>L'équipe technique et pédagogique</strong><br>
+            Plateforme Éducation Numérique<br>
+            princedev317@gmail.com<br>
+            +229 01 40 54 35 01</p>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© {% now "Y" %} Plateforme Éducation Numérique - Tous droits réservés</p>
+    </div>
+</body>
+</html>

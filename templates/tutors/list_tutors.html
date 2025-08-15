@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des parents d'élèves</title>
+    <style>
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th {
+            background: linear-gradient(90deg, #4f8cff 0%, #1e3c72 100%);
+            color: #fff;
+        }
+        tr:nth-child(even) { background: #f9f9f9; }
+        .search-bar { margin-bottom: 20px; }
+        .search-bar input { padding: 6px; border-radius: 4px; border: 1px solid #aaa; width: 300px; }
+    </style>
+    <script>
+    function filterTable() {
+        var input = document.getElementById("searchInput");
+        var filter = input.value.toLowerCase();
+        var table = document.getElementById("tutorTable");
+        var trs = table.getElementsByTagName("tr");
+        var columnSelect = document.getElementById("columnSelect");
+        var colIndex = columnSelect.value;
+        for (var i = 1; i < trs.length; i++) {
+            var tds = trs[i].getElementsByTagName("td");
+            var show = false;
+            if (colIndex === "all") {
+                for (var j = 0; j < tds.length; j++) {
+                    var txtValue = tds[j].textContent || tds[j].innerText;
+                    if (txtValue.toLowerCase().indexOf(filter) > -1) { show = true; break; }
+                }
+            } else {
+                var idx = parseInt(colIndex);
+                if (tds[idx]) {
+                    var txtValue = tds[idx].textContent || tds[idx].innerText;
+                    if (txtValue.toLowerCase().indexOf(filter) > -1) { show = true; }
+                }
+            }
+            trs[i].style.display = show ? "" : "none";
+        }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById("columnSelect").addEventListener("change", filterTable);
+    });
+    </script>
+</head>
+<body>
+    <h1>Liste des Tuteurs</h1>
+    <div class="search-bar">
+        <label for="columnSelect">Filtrer par :</label>
+        <select id="columnSelect">
+            <option value="all">Toutes les colonnes</option>
+            <option value="0">Prénom</option>
+            <option value="1">Nom</option>
+            <option value="2">Téléphone</option>
+            <option value="3">Email</option>
+        </select>
+        <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Tapez pour filtrer...">
+    </div>
+    <table id="tutorTable">
+        <thead>
+            <tr>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Téléphone</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tutor in tutors %}
+            <tr>
+                <td>{{ tutor.first_name }}</td>
+                <td>{{ tutor.last_name }}</td>
+                <td>{{ tutor.phone }}</td>
+                <td>{{ tutor.user.email }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">Aucun tuteur trouvé.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

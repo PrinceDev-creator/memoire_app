@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Bulletin Scolaire</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .header { text-align: center; margin-bottom: 20px; }
+        .school-name { font-size: 18px; font-weight: bold; }
+        .report-title { font-size: 16px; font-weight: bold; margin: 10px 0; }
+        .student-info { margin-bottom: 20px; }
+        .info-row { margin-bottom: 5px; }
+        .info-label { font-weight: bold; display: inline-block; width: 150px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th { background-color: #3498db; color: white; padding: 8px; text-align: left; }
+        td { padding: 8px; border-bottom: 1px solid #ddd; }
+        .footer { margin-top: 40px; display: flex; justify-content: space-between; }
+        .signature { width: 200px; border-top: 1px solid black; margin-top: 50px; }
+        .average { font-weight: bold; font-size: 14px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="school-name">{{school.name }}</div>
+        <div class="report-title">BULLETIN SCOLAIRE</div>
+        <div>Année scolaire: {{ academic_year }}</div>
+    </div>
+
+    <div class="student-info">
+        <div class="info-row">
+            <span class="info-label">Nom et prénom:</span>
+            {{ student.last_name }} {{student.first_name }}
+        </div>
+        <div class="info-row">
+            <span class="info-label">Matricule:</span>
+            {{ student.registration_number }}
+        </div>
+        <div class="info-row">
+            <span class="info-label">Classe:</span>
+            {{ level.name }} 
+            {% if level.series %}{{ level.series }}{% endif %} 
+            {% if level.group %}{{ level.group }}{% endif %}
+        </div>
+        <div class="info-row">
+            <span class="info-label">Semestre\Trimestre:</span>
+            {{ cycle  }}
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Matière</th>
+                <th>Coefficient</th>
+                <th>Moyenne</th>
+                <th>Appréciation</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for matiere in moyennes_par_matiere %}
+            <tr>
+                <td>{{ matiere.matiere }}</td>
+                <td>{{ matiere.coefficient }}</td>
+                <td>{{ matiere.moyenne_matiere }}/20</td>
+                <td>{{ matiere.appreciation }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="average">
+        Moyenne générale: {{ moyenne_generale }}/20 - {{ appreciation_generale }}
+    </div>
+
+     <div class="average">
+        Rang: {{ rang }}
+    </div>
+
+    <div class="footer">
+        <div>
+            <div>Le Professeur Principal</div>
+            <div class="signature"></div>
+        </div>
+        <div>
+            <div>Le Chef d'Établissement</div>
+            <div class="signature"></div>
+            <div>Fait le: {{ date_emission }}</div>
+        </div>
+    </div>
+</body>
+</html>

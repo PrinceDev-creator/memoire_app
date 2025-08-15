@@ -5,17 +5,27 @@ from django.db import models
 
 class Level(models.Model):
     name=models.CharField(max_length=255)
-    group=models.CharField(max_length=10, null=True)
-    series=models.CharField(max_length=5, null=True)
-    academy=models.ForeignKey('users.Academy', on_delete=models.CASCADE, related_name='levels', default=None)
-    effective=models.IntegerField(default=random.randint(10,50))
-    # leader1=models.ForeignKey('students.Student', on_delete=models.CASCADE, null=True, blank=True, related_name='leader1')
+    group=models.CharField(max_length=10, null=True, default=None, blank=True)
+    series=models.CharField(max_length=5, null=True, default=None, blank=True)
+    school=models.ForeignKey('school.School', on_delete=models.CASCADE, related_name='levels', default=None,null=True)
+    # effective=models.IntegerField(default=random.randint(10,50))
+    head_teacher=models.ForeignKey('teacher.Teacher', on_delete=models.CASCADE, related_name='head_teachers_levels', null=True,blank=True, default=None)
+    class_leader=models.ForeignKey('students.Student', on_delete=models.CASCADE, null=True, blank=True, related_name='level_class_leader')
     # leader2=models.ForeignKey('students.Student', on_delete=models.CASCADE, null=True, blank=True, related_name='leader2')
     # leader3=models.ForeignKey('students.Student', on_delete=models.CASCADE, null=True, blank=True, related_name='leader3')
     # objects : models.Manager['Level']
 
+    class Meta:
+        constraints=[
+            models.UniqueConstraint(
+                name='unique_name_group_series_school',
+                fields=['name', 'group', 'series','school']
+            )
+        ]
+    
     def __str__(self):
         return self.name
+    
 
     # @staticmethod
     # def list_students():

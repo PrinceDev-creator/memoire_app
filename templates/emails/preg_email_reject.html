@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification de refus d'inscription</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo {
+            max-height: 80px;
+        }
+        .content {
+            background-color: #f9f9f9;
+            padding: 25px;
+            border-radius: 5px;
+            border-left: 4px solid #e74c3c;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #777;
+            text-align: center;
+        }
+        .signature {
+            margin-top: 40px;
+            font-style: italic;
+        }
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <!-- Remplacez par votre logo -->
+        {% comment %} <img src="[LOGO_ETABLISSEMENT]" alt="Logo" class="logo"> {% endcomment %}
+        <h1>Notification de refus d'inscription</h1>
+        {% comment %} <p>Référence : [NUMERO_DOSSIER]</p> {% endcomment %}
+    </div>
+
+    <div class="content">
+        <p>Objet : <span class="highlight">Refus de votre demande d'inscription</span></p>
+        
+        <p>Madame, Monsieur,</p>
+        
+        <p>Nous avons le regret de vous informer que votre demande d'inscription auprès de <strong>IWESI</strong> n'a pas pu être acceptée.</p>
+        
+        <h3>Motif(s) de refus :</h3>
+        <ul>
+            <li>Motif 1 : Dossier incomplet</li>
+            <li>Motif 2 : Siège de l'établissement non trouvé</li>
+            <li>Motif 3 : Critères non satisfaits</li>
+            <!-- Personnalisez cette liste -->
+        </ul>
+        
+        <p>Cette décision a été prise en date du <strong>{{date}}</strong> par la commission d'admission.</p>
+        
+        <h3>Voies de recours :</h3>
+        <p>Vous pouvez :</p>
+        <ol>
+            <li>Demander une révision du dossier sous 15 jours</li>
+            <li>Faire appel à cette décision par courrier recommandé</li>
+            <li>Nous contacter pour plus d'informations</li>
+        </ol>
+    
+    </div>
+
+    <div class="signature">
+        <p>Cordialement,</p>
+        <p><strong>L'équipe technique et pédagogique</strong><br>
+        Plateforme Éducation Numérique<br>
+        princedev317@gmail.com<br>
+        +229 01 40 54 35 01</p>
+    </div>
+
+<div class="footer">
+    <p>© {% now "Y" %} Plateforme Éducation Numérique - Tous droits réservés</p>
+</div>
+
+</body>
+</html>

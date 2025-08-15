@@ -47,14 +47,16 @@ class Command(BaseCommand) :
             while User.objects.filter(email=email).exists():
                     email=f"{lowercase_first_letter(fake.first_name())}@gmail.com"
             
-            password='tutorPassword'
+            password='123456$Aa'
             
             users_dict.append({
                 "email" : email,
                 "password": password ,
                 "first_name": fake.first_name(),
                 "last_name": random.choice(noms_fon),
-                "type_user" : "tutor"
+                "type_user" : "tutor",
+                "phone_number": fake.phone_number(),
+                "address": fake.address(),
             })
             
         file_path="infos_tutors.json"

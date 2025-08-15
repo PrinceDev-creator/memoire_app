@@ -1,0 +1,42 @@
+[
+    {
+        "score": "{'Interrogation 1': 10.46}",
+        "student": 39,
+        "animation": 19,
+        "cycle": 1,
+        "created_at": "2025-06-10T20:21:58.907990+00:00",
+        "updated_at": "2025-06-10T20:21:58.908002+00:00"
+    },
+    {
+        "score": "{'Interrogation 3': 16.17}",
+        "student": 46,
+        "animation": 13,
+        "cycle": 1,
+        "created_at": "2025-06-10T20:21:58.908426+00:00",
+        "updated_at": "2025-06-10T20:21:58.908432+00:00"
+    },
+    {
+        "score": "{'Devoir 2': 0.04}",
+        "student": 53,
+        "animation": 12,
+        "cycle": 3,
+        "created_at": "2025-06-10T20:21:58.908593+00:00",
+        "updated_at": "2025-06-10T20:21:58.908597+00:00"
+    },
+    {
+        "score": "{'Devoir 1': 3.85}",
+        "student": 45,
+        "animation": 10,
+        "cycle": 2,
+        "created_at": "2025-06-10T20:21:58.908778+00:00",
+        "updated_at": "2025-06-10T20:21:58.908783+00:00"
+    },
+    {
+        "score": "{'Devoir 1': 12.91}",
+        "student": 55,
+        "animation": 11,
+        "cycle": 3,
+        "created_at": "2025-06-10T20:21:58.908896+00:00",
+        "updated_at": "2025-06-10T20:21:58.908900+00:00"
+    }
+]

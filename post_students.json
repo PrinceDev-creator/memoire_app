@@ -1,0 +1,32 @@
+[
+    {
+        "first_name": "Christine",
+        "last_name": "Sêwanou",
+        "registration_number": 667068,
+        "sexe": "M"
+    },
+    {
+        "first_name": "Molly",
+        "last_name": "Adanhoumé",
+        "registration_number": 271457,
+        "sexe": "F"
+    },
+    {
+        "first_name": "Lindsay",
+        "last_name": "Adanhoumé",
+        "registration_number": 622070,
+        "sexe": "M"
+    },
+    {
+        "first_name": "Joshua",
+        "last_name": "Dossou",
+        "registration_number": 578743,
+        "sexe": "M"
+    },
+    {
+        "first_name": "Jeffrey",
+        "last_name": "Boco",
+        "registration_number": 524163,
+        "sexe": "M"
+    }
+]

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification académique</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Roboto:wght@300;400;500&display=swap');
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 640px;
+            margin: 30px auto;
+            background: #ffffff;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e0e0e0;
+        }
+        
+        .header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 28px;
+            text-align: center;
+            border-bottom: 4px solid #b38b59;
+        }
+        
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            font-size: 22px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        .content {
+            padding: 32px;
+        }
+        
+        .greeting {
+            font-size: 16px;
+            margin-bottom: 24px;
+            color: #555;
+        }
+        
+        .main-message {
+            font-size: 15px;
+            margin-bottom: 28px;
+            color: #444;
+        }
+        
+        .student-info {
+            background-color: #f9f9f9;
+            border-left: 3px solid #b38b59;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .info-item {
+            margin-bottom: 8px;
+        }
+        
+        .info-label {
+            font-weight: 500;
+            display: inline-block;
+            width: 100px;
+            color: #666;
+        }
+        
+        .scores-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            font-size: 14px;
+        }
+        
+        .scores-table th {
+            background-color: #f2f2f2;
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 500;
+            color: #555;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .scores-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .no-scores {
+            text-align: center;
+            padding: 30px;
+            color: #777;
+            font-style: italic;
+        }
+        
+        .closing {
+            margin-top: 28px;
+            font-size: 15px;
+            color: #555;
+        }
+        
+        .signature {
+            margin-top: 32px;
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            color: #2c3e50;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #999;
+            border-top: 1px solid #eee;
+            background-color: #fafafa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>E-Notes</h1>
+        </div>
+        
+        <div class="content">
+            <div class="greeting">
+                Madame, Monsieur,
+            </div>
+            
+            <div class="main-message">
+                {% if has_scores %}
+                    {% if 'added' in message_type %}
+                        <p>Nous avons l'honneur de vous informer qu'une nouvelle évaluation concernant votre enfant a été enregistrée dans notre système académique.</p>
+                        <p>Détails de l'évaluation :</p>
+                        {% for evaluation_name, score in message_type.added.items %}
+                            <p>Type d'évaluation : {{ evaluation_name }}</p>
+                            <p>Note : {{ score }}/20</p>
+                        {% endfor %}
+                    
+                    {% elif 'edited' in message_type %}
+                        <p>Nous vous informons qu'une évaluation concernant votre enfant a été modifiée dans notre système académique.</p>
+                        <p>Détails de l'évaluation :</p>
+                        {% for evaluation_name, scores in message_type.edited.items %}
+                            <p>Type d'évaluation : {{ evaluation_name }}</p>
+                            <p>Ancienne note : {{ scores.old }}/20</p>
+                            <p>Nouvelle note : {{ scores.new }}/20</p>
+                        {% endfor %}
+                    {% endif %}
+
+                {% else %}
+                    <p>Nous vous informons par la présente qu'aucune évaluation n'est actuellement disponible pour votre enfant dans cette matière.</p>
+                {% endif %}
+            </div>
+            
+            <div class="student-info">
+                <div class="info-item">
+                    <span class="info-label">Élève :</span>
+                    {{ student_full_name }}
+                </div>
+                 <div class="info-item">
+                    <span class="info-label">Ecole :</span>
+                    {{ school_name }}
+                </div>
+                 <div class="info-item">
+                    <span class="info-label">Classe :</span>
+                    {{ level_name }}
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Matière :</span>
+                    {{ subject_name }}
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">Date :</span>
+                    {{ current_date }}
+                </div>
+            </div>
+            
+            {% if has_scores %}
+            <table class="scores-table">
+                <thead>
+                    <tr>
+                        <th>Type d'évaluation</th>
+                        <th>Note</th>
+                        <th>Appréciation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for score in scores %}
+                    {% for type, value in score.items %}
+                    <tr>
+                        <td>{{type}}</td>
+                        <td>{{ value }}/20</td>
+                        <td>
+                            {% if value <= 20 and value >= 18 %} Excellent
+                            {% elif value < 18 and value >= 16 %} Très-bien
+                            {% elif value < 16 and value >= 14 %} Bien
+                            {% elif value < 14 and value >= 12 %} Assez-bien
+                            {% elif value < 12 and value >= 10 %} Passable
+                            {% elif value < 10 %} Insufisant
+                            {% else %} Non évalué
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <div class="no-scores">
+                <p>Aucune évaluation n'a été enregistrée à ce jour.</p>
+            </div>
+            {% endif %}
+            
+            <div class="closing">
+                <p>Nous restons à votre disposition pour toute information complémentaire concernant les résultats de votre enfant.</p>
+            </div>
+            
+            <div class="signature">
+                <p>Veuillez agréer, Madame, Monsieur, l'expression de nos salutations distinguées.</p>
+                <p>La Direction Pédagogique</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            © 2025 Plateforme numérique - Tous droits réservés<br>
+            Ce message est envoyé automatiquement, merci de ne pas y répondre
+        </div>
+    </div>
+</body>
+</html>

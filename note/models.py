@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 # from ..students.models import Student
@@ -6,24 +7,32 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 # from ..users.models import Teacher
 
 class Note(models.Model):
-    quiz = models.JSONField(null=True, blank=True)  # Stocker les évaluations et leurs notes sous forme de dictionnaire
-    exam = models.JSONField(null=True, blank=True)  # Stocker les évaluations et leurs notes sous forme de dictionnaire
+    score = models.JSONField(null=True, blank=True, default={})  # Stocker les évaluations et leurs notes sous forme de dictionnaire
     cycle = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(3)], null=True)
     student = models.ForeignKey('students.Student', on_delete=models.CASCADE, related_name='notes_student')
-    subject = models.ForeignKey('subject.Subject', on_delete=models.CASCADE, related_name='notes_subject')
-    level = models.ForeignKey('level.Level', on_delete=models.CASCADE, related_name='notes_level')
+    # subject = models.ForeignKey('subject.Subject', on_delete=models.CASCADE, related_name='notes_subject')
+    # teacher=models.ForeignKey('teacher.Teacher', on_delete=models.CASCADE, related_name='notes_teachers')
+    # coefficient=models.IntegerField(default=1)
+    animation=models.ForeignKey('animation.Animation', on_delete=models.CASCADE, null=True, related_name='notes_animation')
+    academic_year=models.CharField(max_length=10, default=settings.ACADEMIC_YEAR)
+    # school=models.ForeignKey('school.School', on_delete=models.CASCADE, null=True, related_name='notes_school', default=1)
+    # level = models.ForeignKey('level.Level', on_delete=models.CASCADE, related_name='notes_level')
+    is_validated=models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    # objects: models.Manager["Note"]
     
-    class Meta:
-        constraints=[
-            models.UniqueConstraint(
-                fields=['student','level','subject','cycle','quiz'],
-                name='unique_note'
+    def __str__(self):
+        return self.student.first_name
+
+    
+    # class Meta:
+    #     constraints=[
+    #         models.UniqueConstraint(
+    #             fields=['student','level','subject','teacher','academy','cycle','score'],
+    #             name='unique_note'
                 
-            )
-        ]
+    #         )
+    #     ]
 
     # def display_note(self):
     #     return {

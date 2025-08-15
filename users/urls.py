@@ -1,20 +1,20 @@
 from rest_framework import routers
-from users.views import TeacherViewSet, AcademyViewSet,TutorViewSet,UserViewSet,AdminAcademyView,AdminTeacherViewSet,AdminTutorViewSet
+from users.views import TeacherViewSet, AcademyViewSet,UserViewSet,AdminAcademyViewSet,AdminTeacherViewSet,AdminUserViewSet,GenerateTeacherKeyView,CustomUserRegister
 
 viewsets=[
-    (r'teachers', TeacherViewSet,None),
+    (r'teachers', TeacherViewSet,'teachers'),
     (r'academies', AcademyViewSet,'academies'),
-    (r'tutors',TutorViewSet,None),
-    (r'user/register',UserViewSet,None),
-    (r'adminAcademies', AdminAcademyView,'adminAcademy'),
-    (r'adminTeachers',AdminTeacherViewSet,'adminTeacher'),
-    (r'adminTutors',AdminTutorViewSet, 'adminTutor')
+    (r'users', AdminUserViewSet,'users'),
+    # (r'tutors',TutorViewSet,'tutors'),
+    # (r'user/register',UserViewSet,'usersViewSets'),
+    # (r'user/customreg',CustomUserRegister,'customuserreg'),
+    (r'adminAcademies', AdminAcademyViewSet,'adminAcademy'),
+    (r'adminTeachers',AdminTeacherViewSet,'adminTeachers'),
+    # (r'adminTutors',AdminTutorViewSet, 'adminTutors'),
+    (r'generateTeacherKey',GenerateTeacherKeyView, 'generateTeacherKey')
 ]
 
 router=routers.DefaultRouter()
  
-for route, viewset,basename in viewsets:
-    if basename :
-      router.register(route,viewset,basename=basename)
-    else:
-        router.register(route,viewset)
+for route,viewset,basename in viewsets:
+  router.register(route,viewset,basename=basename)

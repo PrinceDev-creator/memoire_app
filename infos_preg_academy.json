@@ -1,0 +1,42 @@
+[
+    {
+        "email": "stephaniebennettlisa@example.com",
+        "school_name": "Complexe scolaire Anne Rodriguez",
+        "password": "123456$Aa",
+        "director": "Agbo Stephanie",
+        "address": "Place de l'Étoile Rouge, Cotonou, Bénin",
+        "phone_number": "876.377.4139x9878"
+    },
+    {
+        "email": "monicarobertwilson@example.org",
+        "school_name": "CEG Jessica White",
+        "password": "123456$Aa",
+        "director": "Soglo Monica",
+        "address": "Boulevard de la Marina, Cotonou, Bénin",
+        "phone_number": "233-552-8706x32226"
+    },
+    {
+        "email": "jaredjeffreyholmes@example.net",
+        "school_name": "Complexe scolaire Daniel Steele",
+        "password": "123456$Aa",
+        "director": "Vodounon Jared",
+        "address": "Avenue Steinmetz, Cotonou, Bénin",
+        "phone_number": "317.754.2392"
+    },
+    {
+        "email": "cherylkhoward@example.net",
+        "school_name": "CEG Jeffrey Barrera",
+        "password": "123456$Aa",
+        "director": "Gbéto Cheryl",
+        "address": "Avenue Steinmetz, Cotonou, Bénin",
+        "phone_number": "+1-246-760-6455x8178"
+    },
+    {
+        "email": "heidiwilliamlittle@example.org",
+        "school_name": "Complexe scolaire Jerry Wise",
+        "password": "123456$Aa",
+        "director": "Zinsou Heidi",
+        "address": "Rue des Banques, Abomey-Calavi, Bénin",
+        "phone_number": "508.959.3443"
+    }
+]

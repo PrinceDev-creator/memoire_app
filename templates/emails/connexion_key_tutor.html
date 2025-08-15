@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accusé de réception - Votre demande</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background-color:rgb(74, 165, 85);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px 5px 0 0;
+        }
+        .content {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-top: none;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #666;
+            text-align: center;
+        }
+        .signature {
+            margin-top: 30px;
+            font-style: italic;
+        }
+        .button {
+            display: inline-block;
+            background-color: #4a6fa5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .nb {
+            color: orange;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Inscription acceptée </h1>
+    </div>
+    
+    <div class="content">
+        <p>Cher Parent/Tuteur</p>
+        
+        <p>Votre demande d'inscription a été acceptée par l'équipe de gestion de la plateforme . <br> Voici votre clé de connexion :  <strong>{{connexion_key}}</strong> 
+        
+        <p>Voici les prochaines étapes :</p>
+        <ul>
+            <li>Dorénavant vous pouvez vous connecter en tapant dans les champs correspondants : 
+                <li>Votre mail</li> 
+                <li>Votre mot de passe</li> 
+                <li>Votre clé de connexion</li>
+            </li>
+        </ul>
+        
+        
+        <div class="signature">
+            <p>Cordialement,</p>
+            <p><strong>L'équipe technique et pédagogique</strong><br>
+            Plateforme Éducation Numérique<br>
+            princedev317@gmail.com<br>
+            +229 01 40 54 35 01</p>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>Cet email a été envoyé automatiquement, merci de ne pas y répondre directement.</p>
+        <p>© {% now "Y" %} Plateforme Éducation Numérique - Tous droits réservés</p>
+    </div>
+</body>
+</html>

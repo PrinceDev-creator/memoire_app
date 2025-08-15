@@ -55,7 +55,7 @@ Traceback (most recent call last):
   File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1175, in get_field_names
     assert field_name in fields, (
            ^^^^^^^^^^^^^^^^^^^^
-AssertionError: The field 'academy_id' was declared on serializer UserSerializer, but has not been included in the 'fields' option.
+AssertionError: The field 'academy_id' was declared on serializer UserRegisterSerializer, but has not been included in the 'fields' option.
 [14/Mar/2025 20:14:20] "POST /user/register/ HTTP/1.1" 500 146011
 Internal Server Error: /user/register/
 Traceback (most recent call last):
@@ -107,7 +107,7 @@ Traceback (most recent call last):
   File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1175, in get_field_names
     assert field_name in fields, (
            ^^^^^^^^^^^^^^^^^^^^
-AssertionError: The field 'academy_id' was declared on serializer UserSerializer, but has not been included in the 'fields' option.
+AssertionError: The field 'academy_id' was declared on serializer UserRegisterSerializer, but has not been included in the 'fields' option.
 [14/Mar/2025 20:14:21] "POST /user/register/ HTTP/1.1" 500 146011
 Internal Server Error: /user/register/
 Traceback (most recent call last):
@@ -159,7 +159,7 @@ Traceback (most recent call last):
   File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1175, in get_field_names
     assert field_name in fields, (
            ^^^^^^^^^^^^^^^^^^^^
-AssertionError: The field 'academy_id' was declared on serializer UserSerializer, but has not been included in the 'fields' option.
+AssertionError: The field 'academy_id' was declared on serializer UserRegisterSerializer, but has not been included in the 'fields' option.
 [14/Mar/2025 20:14:22] "POST /user/register/ HTTP/1.1" 500 146011
 Internal Server Error: /user/register/
 Traceback (most recent call last):
@@ -211,7 +211,7 @@ Traceback (most recent call last):
   File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1175, in get_field_names
     assert field_name in fields, (
            ^^^^^^^^^^^^^^^^^^^^
-AssertionError: The field 'academy_id' was declared on serializer UserSerializer, but has not been included in the 'fields' option.
+AssertionError: The field 'academy_id' was declared on serializer UserRegisterSerializer, but has not been included in the 'fields' option.
 [14/Mar/2025 20:14:22] "POST /user/register/ HTTP/1.1" 500 146011
 Internal Server Error: /user/register/
 Traceback (most recent call last):
@@ -263,7 +263,7 @@ Traceback (most recent call last):
   File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1175, in get_field_names
     assert field_name in fields, (
            ^^^^^^^^^^^^^^^^^^^^
-AssertionError: The field 'academy_id' was declared on serializer UserSerializer, but has not been included in the 'fields' option.
+AssertionError: The field 'academy_id' was declared on serializer UserRegisterSerializer, but has not been included in the 'fields' option.
 [14/Mar/2025 20:14:23] "POST /user/register/ HTTP/1.1" 500 146011
 Internal Server Error: /user/register/
 Traceback (most recent call last):
@@ -315,7 +315,7 @@ Traceback (most recent call last):
   File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1175, in get_field_names
     assert field_name in fields, (
            ^^^^^^^^^^^^^^^^^^^^
-AssertionError: The field 'academy_id' was declared on serializer UserSerializer, but has not been included in the 'fields' option.
+AssertionError: The field 'academy_id' was declared on serializer UserRegisterSerializer, but has not been included in the 'fields' option.
 [14/Mar/2025 20:14:24] "POST /user/register/ HTTP/1.1" 500 146013
 Internal Server Error: /user/register/
 Traceback (most recent call last):
@@ -367,7 +367,7 @@ Traceback (most recent call last):
   File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1175, in get_field_names
     assert field_name in fields, (
            ^^^^^^^^^^^^^^^^^^^^
-AssertionError: The field 'academy_id' was declared on serializer UserSerializer, but has not been included in the 'fields' option.
+AssertionError: The field 'academy_id' was declared on serializer UserRegisterSerializer, but has not been included in the 'fields' option.
 [14/Mar/2025 20:14:25] "POST /user/register/ HTTP/1.1" 500 146009
 Internal Server Error: /user/register/
 Traceback (most recent call last):
@@ -419,7 +419,7 @@ Traceback (most recent call last):
   File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1175, in get_field_names
     assert field_name in fields, (
            ^^^^^^^^^^^^^^^^^^^^
-AssertionError: The field 'academy_id' was declared on serializer UserSerializer, but has not been included in the 'fields' option.
+AssertionError: The field 'academy_id' was declared on serializer UserRegisterSerializer, but has not been included in the 'fields' option.
 [14/Mar/2025 20:14:25] "POST /user/register/ HTTP/1.1" 500 146011
 Internal Server Error: /user/register/
 Traceback (most recent call last):
@@ -471,7 +471,7 @@ Traceback (most recent call last):
   File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1175, in get_field_names
     assert field_name in fields, (
            ^^^^^^^^^^^^^^^^^^^^
-AssertionError: The field 'academy_id' was declared on serializer UserSerializer, but has not been included in the 'fields' option.
+AssertionError: The field 'academy_id' was declared on serializer UserRegisterSerializer, but has not been included in the 'fields' option.
 Internal Server Error: /user/register/
 Traceback (most recent call last):
   File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
@@ -522,7 +522,7 @@ Traceback (most recent call last):
   File "/home/prince/Documents/programmation/projects/edutrack_django/edutrack/.venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1175, in get_field_names
     assert field_name in fields, (
            ^^^^^^^^^^^^^^^^^^^^
-AssertionError: The field 'academy_id' was declared on serializer UserSerializer, but has not been included in the 'fields' option.
+AssertionError: The field 'academy_id' was declared on serializer UserRegisterSerializer, but has not been included in the 'fields' option.
 [14/Mar/2025 20:14:38] "POST /user/register/ HTTP/1.1" 500 146013
 /home/prince/Documents/programmation/projects/edutrack_django/edutrack/edutrack/settings.py changed, reloading.
 Performing system checks...

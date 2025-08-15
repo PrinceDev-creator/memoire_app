@@ -2,9 +2,11 @@ import random
 from decimal import Decimal
 from django.core.management.base import BaseCommand
 from note.models import Note
-from subject.models import Subject
 from students.models import Student
-from level.models import Level
+# from subject.models import Subject
+# from students.models import Student
+# from level.models import Level
+from animation.models import Animation
 from django.utils.timezone import now
 
 class Command(BaseCommand):
@@ -13,23 +15,27 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         num_notes = 50  # Nombre de notes à générer
         
-        subjects = list(Subject.objects.filter(id__range=(1, 11)).order_by("?"))
-        students = list(Student.objects.filter(id__range=(21, 40)).order_by("?"))
-        levels = list(Level.objects.filter(id__range=(1, 15)).order_by("?"))
+        # subjects = list(Subject.objects.filter(id__range=(1, 11)).order_by("?"))
+        # subjects = Subject.objects.all()
+        # students = Student.objects.all()
+        # levels = Level.objects.all()
         
-        if not subjects or not students or not levels:
-            self.stdout.write(self.style.ERROR('Assurez-vous que les données Subject, Student et Level existent.'))
-            return
-        
+        animations=Animation.objects.all()
+        students =Student.objects.all()
         notes = []
+        
+        
+        
+        # if not subjects or not students or not levels:
+        #     self.stdout.write(self.style.ERROR('Assurez-vous que les données Subject, Student et Level existent.'))
+        #     return
+        
         for _ in range(num_notes):
             note = Note(
-                score=Decimal(random.uniform(0, 20)).quantize(Decimal('0.01')),
-                subject=random.choice(subjects),
-                quiz=random.randint(1, 5),
-                cycle=random.randint(1,3),
+                score=self.definy_score(),
                 student=random.choice(students),
-                level=random.choice(levels),
+                animation=random.choice(animations),
+                cycle=random.randint(1,3),
                 created_at=now(),
                 updated_at=now()
             )
@@ -37,3 +43,13 @@ class Command(BaseCommand):
         
         Note.objects.bulk_create(notes)
         self.stdout.write(self.style.SUCCESS(f'{num_notes} notes insérées avec succès.'))
+
+    def definy_score(self):
+        compos = ['Interrogation 1', 'Devoir 1','Interrogation 2', 'Devoir 2', 'Interrogation 3']
+        score=Decimal(random.uniform(0, 20)).quantize(Decimal('0.01'))
+        compo=random.choice(compos)
+        note={
+            '{compo}': score,
+        }
+        return note
+    

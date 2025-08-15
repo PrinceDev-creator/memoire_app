@@ -74,7 +74,7 @@ class Migration(migrations.Migration):
                 ('activate', models.BooleanField(default=False)),
                 ('is_teacher', models.BooleanField(default=True)),
                 ('level', models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, related_name='teachers_level', to='level.level')),
-                ('academy', models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, related_name='teachers_academy', to='users.academy')),
+                ('academy', models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, related_name='teachers_academy', to='school.School')),
                 ('subject', models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, related_name='teachers_subject', to='subject.subject')),
             ],
             options={

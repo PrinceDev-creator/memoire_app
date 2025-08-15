@@ -1,256 +1,517 @@
-Je vais te montrer comment structurer l'API Django pour recevoir et traiter le type d'utilisateur (`type_user`), puis je vais te donner le code Flutter correspondant.
-
----
-
-### **1. API Django (DRF)**
-On va créer une vue API pour gérer la création des utilisateurs en fonction du type choisi.
-
-#### **Modèle `UserApp`**
-```python
-from django.contrib.auth.models import AbstractUser
-from django.db import models
-
-class UserApp(AbstractUser):
-    is_academy = models.BooleanField(default=False)
-    is_teacher = models.BooleanField(default=False)
-    is_tutor = models.BooleanField(default=False)
-```
-
-#### **Modèles `Academy`, `Teacher`, `Tutor`**
-```python
-class Academy(models.Model):
-    user = models.OneToOneField(UserApp, on_delete=models.CASCADE, related_name='academy')
-    academy = models.CharField(max_length=100)
-
-class Teacher(models.Model):
-    user = models.OneToOneField(UserApp, on_delete=models.CASCADE, related_name='teacher')
-    subject = models.CharField(max_length=100)
-
-class Tutor(models.Model):
-    user = models.OneToOneField(UserApp, on_delete=models.CASCADE, related_name='tutor')
-    expertise = models.CharField(max_length=100)
-```
-
-#### **Serializer pour l'inscription**
-```python
-from rest_framework import serializers
-from .models import UserApp, Academy, Teacher, Tutor
-
-class UserRegistrationSerializer(serializers.ModelSerializer):
-    type_user = serializers.CharField(write_only=True)
-
-    class Meta:
-        model = UserApp
-        fields = ['username', 'email', 'password', 'type_user']
-
-    def create(self, validated_data):
-        type_user = validated_data.pop("type_user")
-        user = UserApp.objects.create_user(**validated_data)
-
-        if type_user == "academy":
-            user.is_academy = True
-            user.save()
-            Academy.objects.create(user=user, academy="Default Academy")
+class StudentStatisticsView(APIView):
+    def get(self, request):
         
-        elif type_user == "teacher":
-            user.is_teacher = True
-            user.save()
-            Teacher.objects.create(user=user, subject="Mathematics")
+        student_id = request.GET.get('student')
+        subject_id = request.GET.get('subject')
+        level_id = request.GET.get('level')
+        cycle = request.GET.get('cycle')
+        scores = request.GET.get('scores')
+        academic_year = settings.ACADEMIC_YEAR
 
-        elif type_user == "tutor":
-            user.is_tutor = True
-            user.save()
-            Tutor.objects.create(user=user, expertise="Science")
+        # Nettoyage des paramètres (convertir '' en None)
+        student_id = student_id or None
+        subject_id = subject_id or None
+        level_id = level_id or None
+        cycle = cycle or None
 
-        return user
-```
+        notes_queryset = Note.objects.all()
+        category_subject = None
 
-#### **Vue API**
-```python
-from rest_framework.generics import CreateAPIView
-from .models import UserApp
-from .serializers import UserRegistrationSerializer
+        # Les cas les plus spécifiques en premier
+        if student_id and level_id and subject_id and cycle:
+            # Cas 1 : Tous les paramètres présents
+            notes_queryset = notes_queryset.filter(
+                student_id=student_id,
+                animation__subject__id=subject_id,
+                animation__level__id=level_id,
+                academic_year=academic_year,
+                cycle=cycle
+            )
+        elif student_id and level_id and subject_id:
+            # Cas 2 : student, level, subject
+            notes_queryset = notes_queryset.filter(
+                student_id=student_id,
+                animation__subject__id=subject_id,
+                animation__level__id=level_id,
+                academic_year=academic_year
+            )
+        elif student_id and level_id:
+            # Cas 3 : student, level
+            notes_queryset = notes_queryset.filter(
+                student_id=student_id,
+                animation__level__id=level_id,
+                academic_year=academic_year
+            )
+        elif student_id:
+            # Cas 4 : student seul
+            notes_queryset = notes_queryset.filter(
+                student_id=student_id,
+                academic_year=academic_year
+            )
+        elif subject_id and level_id and cycle:
+            # Cas 5 : subject, level, cycle
+            notes_queryset = notes_queryset.filter(
+                animation__subject__id=subject_id,
+                animation__level__id=level_id,
+                academic_year=academic_year,
+                cycle=cycle
+            )
+            category_subject = Subject.objects.filter(id=subject_id).values_list('category', flat=True).first()
+        elif subject_id and level_id:
+            # Cas 6 : subject, level
+            notes_queryset = notes_queryset.filter(
+                animation__subject__id=subject_id,
+                animation__level__id=level_id,
+                academic_year=academic_year
+            )
+            category_subject = Subject.objects.filter(id=subject_id).values_list('category', flat=True).first()
+        elif subject_id:
+            # Cas 7 : subject seul
+            notes_queryset = notes_queryset.filter(
+                animation__subject__id=subject_id,
+                academic_year=academic_year
+            )
+        elif level_id:
+            # Cas 8 : level seul
+            notes_queryset = notes_queryset.filter(
+                animation__level__id=level_id,
+                academic_year=academic_year
+            )
+        elif cycle:
+            # Cas 9 : cycle seul
+            notes_queryset = notes_queryset.filter(
+                cycle=cycle,
+                academic_year=academic_year
+            )
+        else:
+            # Cas par défaut : aucun filtre
+            notes_queryset = notes_queryset.filter(academic_year=academic_year)
 
-class UserRegisterView(CreateAPIView):
-    queryset = UserApp.objects.all()
-    serializer_class = UserRegistrationSerializer
-```
+                
+        if student_id :
+            student_first_name= Student.objects.filter(id=student_id).values_list('first_name',flat=True).first() 
+            student_last_name= Student.objects.filter(id=student_id).values_list('last_name',flat=True).first()    
+            
+        if level_id :
+            level_name = Note.objects.filter(animation__level__id=level_id).values_list('animation__level__name', flat=True).first()    
+            level_group= Note.objects.filter(animation__level__id=level_id).values_list('animation__level__group', flat=True).first()
+            level_series= Note.objects.filter(animation__level__id=level_id).values_list('animation__level__series', flat=True).first()
+            school_name= Note.objects.filter(animation__level__id=level_id).values_list('animation__level__school__school_name', flat=True).first()
 
-#### **URL**
-```python
-from django.urls import path
-from .views import UserRegisterView
+        if not notes_queryset.exists():
+            return Response({
+                'category_subject' : category_subject,
+                'moyenne_generale': 0.0
+                }, 
+                exception= True,status=status.HTTP_200_OK)
 
-urlpatterns = [
-    path('register/', UserRegisterView.as_view(), name='register'),
-]
-```
+        # Dictionnaire pour organiser les notes par matière
+        matieres = {}
+        if subject_id:
+                subject_name= Subject.objects.filter(id=subject_id).values_list('name', flat=True).first()
+                matieres= {
+                    subject_id: 
+                        {'nom': subject_name, 'coefficient': 1, 'devoirs': [], 'interrogations': [], 'examens': []}
+                    }
 
----
+        list_score_data=[]
+        
+        for note in notes_queryset:
+            try:
+                # Parsing du JSON des notes
+                if isinstance(note.score, str):
+                    score_data = json.loads(note.score.replace("'", '"'))
+                else:
+                    score_data = note.score
+                list_score_data.append({note.cycle: score_data})
+                print(f'list_score_data : {list_score_data}')
+                if not isinstance(score_data, dict):
+                    continue
+                # if scores:
+                #     scores=int(scores)
+                #     print(f"scores :{scores} , type : {type(scores)}")
+                #     return Response(score_data, status=status.HTTP_200_OK)
+                # print(f"score_data : {score_data}\n")
+            
+                # Initialisation de la structure pour une nouvelle matière
+                if subject_id is None and note.animation.subject.id not in matieres:
+                    subject_id_note=note.animation.subject.id
+                    matieres[subject_id_note] = {
+                        'nom': note.animation.subject.name,
+                        'coefficient': note.animation.coefficient,
+                        'devoirs': [],
+                        'interrogations': [],
+                        'examens': []
+                    }
+                    
+                    print(f"matieresInit : {matieres}")
 
-### **2. Flutter (Frontend)**
-Voici le code Flutter correspondant.
+                # Classement des notes par type d'évaluation
+                for eval_type, note_value in score_data.items():
+                    try:
+                        print(f"eval_type : {eval_type} --- note_value : {note_value}")
+                        note_float = float(note_value)
+                        # eval_type_clean = eval_type.lower().strip()
 
-#### **DropdownButton pour sélectionner le type d'utilisateur**
-```dart
-import 'package:flutter/material.dart';
+                        # Vérification du type d'évaluation avec différentes méthodes
+                        if subject_id is None:
+                            subject_id_mat=note.animation.subject.id
+                        else:
+                            subject_id_mat=subject_id
+                        if self.is_devoir(eval_type):
+                            matieres[subject_id_mat]['devoirs'].append(note_float)
+                        elif self.is_interrogation(eval_type):
+                            matieres[subject_id_mat]['interrogations'].append(note_float)
+                        # elif self.is_examen(eval_type_clean):
+                        #     matieres[note.subject_id]['examens'].append(note_float)
 
-void main() {
-  runApp(MyApp());
-}
+                        print(f"matieres : {matieres}")
+                    except (ValueError, TypeError):
+                        continue
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'User Type Selection',
-      home: UserTypeSelection(),
-    );
-  }
-}
+            except (json.JSONDecodeError, AttributeError, ValueError) as e:
+                continue
+            
+        if scores:
+            scores=int(scores)
+            print(f"scores :{scores} , type : {type(scores)}")
+            print(f"list_score_data : {list_score_data}")
+            return Response(list_score_data, status=status.HTTP_200_OK)
+            print(f"score_data : {score_data}\n")
 
-class UserTypeSelection extends StatefulWidget {
-  @override
-  _UserTypeSelectionState createState() => _UserTypeSelectionState();
-}
+        if not matieres:
+            return Response({"message": "Aucune note valide trouvée"}, exception= True, status=status.HTTP_404_NOT_FOUND)
 
-class _UserTypeSelectionState extends State<UserTypeSelection> {
-  String? selectedUserType;
+        # Calcul des moyennes par matière
+        moyennes_matieres = []
+        somme_ponderee = 0
+        somme_coefficients = 0
 
-  void navigateToForm() {
-    if (selectedUserType != null) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => UserFormPage(userType: selectedUserType!),
-        ),
-      );
-    }
-  }
+        for matiere_id, data in matieres.items():
+            # Calcul de la moyenne des interrogations
+            moy_interros = np.mean(data['interrogations']) if data['interrogations'] else 0
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Sélection du type d'utilisateur")),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            DropdownButton<String>(
-              hint: Text("Choisir un type d'utilisateur"),
-              value: selectedUserType,
-              items: ["academy", "teacher", "tutor"]
-                  .map((type) => DropdownMenuItem(
-                        value: type,
-                        child: Text(type.toUpperCase()),
-                      ))
-                  .toList(),
-              onChanged: (value) {
-                setState(() {
-                  selectedUserType = value;
-                });
-              },
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: navigateToForm,
-              child: Text("Suivant"),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-```
+            # Calcul de la note de devoir (on prend la dernière note)
+            note_devoir = data['devoirs'] if data['devoirs'] else 0
 
-#### **Page de formulaire qui garde en mémoire le type d'utilisateur**
-```dart
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+            # Calcul de la note finale de la matière
+            # if data['examens']:
+            #     note_matiere = np.mean(data['examens'])  # Moyenne des examens s'il y en a
+            # else:
+            note_matiere = (moy_interros + sum(note_devoir)) / (1+len(note_devoir)) if note_devoir !=0 else moy_interros  # Calcul selon la méthode scolaire 
 
-class UserFormPage extends StatefulWidget {
-  final String userType;
+            # Calcul des contributions pour la moyenne générale
+            somme_ponderee += note_matiere * data['coefficient']
+            somme_coefficients += data['coefficient']
 
-  UserFormPage({required this.userType});
+            # Stockage des résultats pour cette matière
+            moyennes_matieres.append({
+                'matiere': data['nom'],
+                'coefficient': data['coefficient'],
+                'moyenne_interrogations': round(float(moy_interros), 2),
+                # 'note_devoir': round(float(note_devoir), 2),
+                'moyenne_matiere': round(float(note_matiere), 2),
+                'details': {
+                    'devoirs': data['devoirs'] if data['devoirs'] else None,
+                    'interrogations': data['interrogations'],
+                    # 'examens': data['examens']
+                }
+            })
 
-  @override
-  _UserFormPageState createState() => _UserFormPageState();
-}
+        # Calcul de la moyenne générale
+        moyenne_generale = somme_ponderee / somme_coefficients if somme_coefficients != 0 else 0
 
-class _UserFormPageState extends State<UserFormPage> {
-  final _formKey = GlobalKey<FormState>();
-  String username = '';
-  String email = '';
-  String password = '';
+        rank=None
+        
+        if student_id and subject_id is None:
+            print(f'subject_rank_nooooo_def : {subject_id}')
+            rank= self.rank_student(student_id, level_id, academic_year, subject_id=None)
+            print(f"rank : {rank}")
+        elif student_id and subject_id:
+            print(f'subject_rank_def : {subject_id}')
+            rank= self.rank_student(student_id, level_id, academic_year, subject_id)
+            print(f"rank : {rank}")
+        
+        # Préparation de la réponse finale
+        response_data = {
+            'school_name': school_name if school_name else None,
+            'student_first_name': student_first_name if student_id else None,
+            'student_last_name': student_last_name if student_id else None,
+            'level_name': level_name if level_name else None,
+            'level_group': level_group if level_group else None,
+            'level_series': level_series if level_series else None,
+            'category_subject' : category_subject,
+            'subject_id': subject_id if subject_id else None,
+            "academic_year": academic_year,
+            'moyennes_par_matiere': moyennes_matieres,
+            'moyenne_generale': round(float(moyenne_generale), 2),
+            'total_coefficients': somme_coefficients,
+            'rank': self.rank_suffix(rank) if rank is not None else None,
+            'statut':'success' if moyenne_generale >= 10 else 'deny' 
+        }
 
-  Future<void> registerUser() async {
-    final response = await http.post(
-      Uri.parse('http://localhost:8000/api/register/'),
-      headers: {"Content-Type": "application/json"},
-      body: jsonEncode({
-        "username": username,
-        "email": email,
-        "password": password,
-        "type_user": widget.userType
-      }),
-    );
+        return Response(response_data, status=status.HTTP_200_OK)
 
-    if (response.statusCode == 201) {
-      print("Utilisateur enregistré avec succès !");
-    } else {
-      print("Erreur lors de l'enregistrement: ${response.body}");
-    }
-  }
+------------------------------------------------------------------------------------
+def get(self, request):
+        student_id = request.GET.get('student')
+        subject_id = request.GET.get('subject')
+        level_id = request.GET.get('level')
+        cycle = request.GET.get('cycle')
+        scores = request.GET.get('scores')
+        academic_year = settings.ACADEMIC_YEAR
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Formulaire ${widget.userType.toUpperCase()}")),
-      body: Form(
-        key: _formKey,
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              TextFormField(
-                decoration: InputDecoration(labelText: "Nom d'utilisateur"),
-                onChanged: (value) => username = value,
-              ),
-              TextFormField(
-                decoration: InputDecoration(labelText: "Email"),
-                onChanged: (value) => email = value,
-              ),
-              TextFormField(
-                decoration: InputDecoration(labelText: "Mot de passe"),
-                obscureText: true,
-                onChanged: (value) => password = value,
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: registerUser,
-                child: Text("S'inscrire"),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-```
+        # Nettoyage des paramètres
+        student_id = student_id or None
+        subject_id = subject_id or None
+        level_id = level_id or None
+        cycle = cycle or None
 
----
+        # Filtrage des notes
+        notes_queryset = self.filter_notes(student_id, subject_id, level_id, cycle, academic_year)
+        
+        # Récupération des informations supplémentaires
+        student_info = self.get_student_info(student_id) if student_id else {}
+        level_info = self.get_level_info(level_id) if level_id else {}
+        category_subject = self.get_subject_category(subject_id) if subject_id else None
 
-### **Explication**
-1. **Backend Django :**
-   - Création d'un utilisateur avec `type_user` pour déterminer s'il s'agit d'une `Academy`, `Teacher` ou `Tutor`.
-   - Les modèles correspondants sont créés automatiquement après l'inscription.
+        if not notes_queryset.exists():
+            return Response({
+                'category_subject': category_subject,
+                'moyenne_generale': 0.0
+            }, status=status.HTTP_200_OK)
 
-2. **Frontend Flutter :**
-   - L'utilisateur choisit son type dans un `DropdownButton`.
-   - Il est redirigé vers un formulaire correspondant à son choix.
-   - Après soumission, les données sont envoyées à l'API Django via `http.post`.
+        # Traitement des scores si demandé
+        if scores:
+            list_score_data = self.extract_score_data(notes_queryset)
+            return Response(list_score_data, status=status.HTTP_200_OK)
 
-Ainsi, l'API et l'application Flutter sont bien connectées pour gérer l'inscription des utilisateurs selon leur type.
+        # Organisation des notes par matière
+        matieres = self.organize_notes_by_subject(notes_queryset, subject_id)
+
+        if not matieres:
+            return Response({"message": "Aucune note valide trouvée"}, status=status.HTTP_404_NOT_FOUND)
+
+        # Calcul des moyennes
+        moyennes_matieres, moyenne_generale, somme_coefficients = self.calculate_averages(matieres)
+
+        # Calcul du rang si nécessaire
+        rank = None
+        if student_id:
+            rank = self.calculate_student_rank(student_id, level_id, academic_year, subject_id)
+
+        # Préparation de la réponse finale
+        response_data = {
+            **student_info,
+            **level_info,
+            'category_subject': category_subject,
+            'subject_id': subject_id,
+            "academic_year": academic_year,
+            'moyennes_par_matiere': moyennes_matieres,
+            'moyenne_generale': round(float(moyenne_generale), 2),
+            'total_coefficients': somme_coefficients,
+            'rank': self.format_rank(rank) if rank is not None else None,
+            'statut': 'success' if moyenne_generale >= 10 else 'deny'
+        }
+
+        return Response(response_data, status=status.HTTP_200_OK)
+
+    def filter_notes(self, student_id=None, subject_id=None, level_id=None, cycle=None, academic_year=None):
+        """Filtre les notes selon les paramètres fournis"""
+        notes_queryset = Note.objects.filter(academic_year=academic_year)
+        
+        if student_id:
+            notes_queryset = notes_queryset.filter(student_id=student_id)
+        if subject_id:
+            notes_queryset = notes_queryset.filter(animation__subject__id=subject_id)
+        if level_id:
+            notes_queryset = notes_queryset.filter(animation__level__id=level_id)
+        if cycle:
+            notes_queryset = notes_queryset.filter(cycle=cycle)
+            
+        return notes_queryset
+
+    def get_student_info(self, student_id):
+        """Récupère les informations de l'étudiant"""
+        student = Student.objects.filter(id=student_id).first()
+        return {
+            'student_first_name': student.first_name if student else None,
+            'student_last_name': student.last_name if student else None,
+            'registration_number': student.registration_number if student else None
+        }
+
+    def get_level_info(self, level_id):
+        """Récupère les informations du niveau"""
+        level = Level.objects.filter(id=level_id).first()
+        return {
+            'level_name': level.name if level else None,
+            'level_group': level.group if level else None,
+            'level_series': level.series if level else None,
+            'school_name': level.school.school_name if level and level.school else None
+        }
+
+    def get_subject_category(self, subject_id):
+        """Récupère la catégorie d'une matière"""
+        subject = Subject.objects.filter(id=subject_id).first()
+        return subject.category if subject else None
+
+    def extract_score_data(self, notes_queryset):
+        """Extrait les données de score brutes"""
+        list_score_data = []
+        for note in notes_queryset:
+            try:
+                score_data = json.loads(note.score.replace("'", '"')) if isinstance(note.score, str) else note.score
+                list_score_data.append({note.cycle: score_data})
+            except (json.JSONDecodeError, AttributeError, ValueError):
+                continue
+        return list_score_data
+
+    def organize_notes_by_subject(self, notes_queryset, subject_id):
+        """Organise les notes par matière"""
+        matieres = {}
+        
+        if subject_id:
+            subject = Subject.objects.filter(id=subject_id).first()
+            if subject:
+                matieres[subject_id] = {
+                    'nom': subject.name,
+                    'coefficient': 1,  # Valeur par défaut
+                    'devoirs': [],
+                    'interrogations': [],
+                    'examens': []
+                }
+
+        for note in notes_queryset:
+            try:
+                score_data = json.loads(note.score.replace("'", '"')) if isinstance(note.score, str) else note.score
+                if not isinstance(score_data, dict):
+                    continue
+
+                subject_id_note = note.animation.subject.id
+                if subject_id is None and subject_id_note not in matieres:
+                    matieres[subject_id_note] = {
+                        'nom': note.animation.subject.name,
+                        'coefficient': note.animation.coefficient,
+                        'devoirs': [],
+                        'interrogations': [],
+                        'examens': []
+                    }
+
+                subject_key = subject_id or subject_id_note
+                for eval_type, note_value in score_data.items():
+                    try:
+                        note_float = float(note_value)
+                        if self.is_devoir(eval_type):
+                            matieres[subject_key]['devoirs'].append(note_float)
+                        elif self.is_interrogation(eval_type):
+                            matieres[subject_key]['interrogations'].append(note_float)
+                    except (ValueError, TypeError):
+                        continue
+
+            except (json.JSONDecodeError, AttributeError, ValueError):
+                continue
+
+        return matieres
+
+    def calculate_averages(self, matieres):
+        """Calcule les moyennes par matière et la moyenne générale"""
+        moyennes_matieres = []
+        somme_ponderee = 0
+        somme_coefficients = 0
+
+        for matiere_id, data in matieres.items():
+            moy_interros = np.mean(data['interrogations']) if data['interrogations'] else 0
+            note_devoir = data['devoirs'] if data['devoirs'] else 0
+
+            note_matiere = (moy_interros + sum(note_devoir)) / (1 + len(note_devoir)) if note_devoir != 0 else moy_interros
+
+            somme_ponderee += note_matiere * data['coefficient']
+            somme_coefficients += data['coefficient']
+
+            moyennes_matieres.append({
+                'matiere': data['nom'],
+                'coefficient': data['coefficient'],
+                'moyenne_interrogations': round(float(moy_interros), 2),
+                'moyenne_matiere': round(float(note_matiere), 2),
+                'details': {
+                    'devoirs': data['devoirs'] if data['devoirs'] else None,
+                    'interrogations': data['interrogations'],
+                }
+            })
+
+        moyenne_generale = somme_ponderee / somme_coefficients if somme_coefficients != 0 else 0
+
+        return moyennes_matieres, moyenne_generale, somme_coefficients
+
+    def calculate_student_rank(self, student_id, level_id, academic_year, subject_id=None):
+        """Calcule le rang de l'étudiant dans sa classe ou dans une matière spécifique"""
+        # Récupérer tous les étudiants du niveau
+        students_ids = Follow.objects.filter(level_id=level_id).values_list('student', flat=True)
+        print('students_calfonc',students_ids)
+        student_ranks = []
+        
+        for student_id in students_ids:
+            # Filtrer les notes selon les mêmes critères que la vue principale
+            print('student',student_id, 'type', type(student_id))
+            params = {
+                'student_id': student_id,
+                'level_id': level_id,
+                'cycle' : 1,
+                'academic_year': academic_year
+            }
+            
+            if subject_id:
+                params['subject_id'] = subject_id
+                
+            notes_queryset = self.filter_notes(**params)
+            matieres = self.organize_notes_by_subject(notes_queryset, subject_id)
+            
+            if not matieres:
+                continue
+                
+            # Calculer la moyenne de l'étudiant
+            _, moyenne, _ = self.calculate_averages(matieres)
+            student_ranks.append({
+                'student_id': student_id,
+                'moyenne': moyenne
+            })
+        
+        # Trier par moyenne décroissante
+        student_ranks.sort(key=lambda x: x['moyenne'], reverse=True)
+        
+        # Trouver le rang de l'étudiant demandé
+        for index, rank in enumerate(student_ranks, start=1):
+            if rank['student_id'] == student_id:
+                return index
+                
+        return None
+
+    def format_rank(self, rank):
+        """Formate le rang avec le suffixe approprié"""
+        if rank is None:
+            return None
+            
+        if 11 <= rank <= 13:
+            return f"{rank}ème"
+            
+        last_digit = rank % 10
+        if last_digit == 1:
+            return f"{rank}er"
+        elif last_digit == 2:
+            return f"{rank}nd"
+        elif last_digit == 3:
+            return f"{rank}ème"
+        else:
+            return f"{rank}ème"
+
+    def is_devoir(self, eval_type):
+        """Détermine si l'évaluation est un devoir"""
+        eval_type_clean = eval_type.lower().strip()
+        devoir_keywords = ['devoir', 'devoirs', 'homework', 'assignment', 'dm', 'devoir maison']
+        return any(keyword in eval_type_clean for keyword in devoir_keywords)
+
+    def is_interrogation(self, eval_type):
+        """Détermine si l'évaluation est une interrogation"""
+        eval_type_clean = eval_type.lower().strip()
+        interro_keywords = ['interro', 'interrogation', 'quiz', 'test', 'qcm', 'controle']
+        return any(keyword in eval_type_clean for keyword in interro_keywords)

@@ -13,3 +13,8 @@ django-environ
 faker
 numpy
 pandas
+python-decouple
+django-seed
+Babel
+drf-yasg
+xhtml2pdf

@@ -61,8 +61,7 @@ class Command(BaseCommand):
             director=f"{random.choice(noms_fon)} {first_name}"
             place=random.choice(benin_addresses)
             academy=f"{random.choice(initial_academy)} {fake.name()}"
-            password='academyPassword'
-            
+            password='123456$Aa'
             email=f"{lowercase_first_letter(first_name)}{fake.email()}"
             while User.objects.filter(email=email).exists():
                 email=f"{lowercase_first_letter(first_name)}{fake.email()}" 
