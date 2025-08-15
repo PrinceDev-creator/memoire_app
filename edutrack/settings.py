@@ -226,8 +226,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# AUTH_USER_MODEL = 'django.contrib.auth.models.AbstractUser'  # Remplace 'school.School' par ton modèle
-
+AUTH_USER_MODEL = 'users.UserApp'  # Remplace 'school.School' par ton modèle
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/

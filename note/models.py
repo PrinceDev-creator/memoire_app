@@ -15,7 +15,7 @@ class Note(models.Model):
     # coefficient=models.IntegerField(default=1)
     animation=models.ForeignKey('animation.Animation', on_delete=models.CASCADE, null=True, related_name='notes_animation')
     academic_year=models.CharField(max_length=10, default=settings.ACADEMIC_YEAR)
-    # school=models.ForeignKey('school.School', on_delete=models.CASCADE, null=True, related_name='notes_school', default=1)
+    # school=models.ForeignKey('school.school', on_delete=models.CASCADE, null=True, related_name='notes_school', default=1)
     # level = models.ForeignKey('level.Level', on_delete=models.CASCADE, related_name='notes_level')
     is_validated=models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)

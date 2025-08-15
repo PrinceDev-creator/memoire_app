@@ -8,7 +8,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('level', '0003_remove_level_leader1_remove_level_leader2_and_more'),
-        ('users', '0011_academy_director_academy_place'),
+        # ('users', '0011_academy_director_academy_place'),
     ]
 
     operations = [

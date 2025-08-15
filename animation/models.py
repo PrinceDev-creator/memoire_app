@@ -6,7 +6,7 @@ class Animation(models.Model):
     subject=models.ForeignKey('subject.Subject', on_delete=models.CASCADE, default=None, null=True)
     level=models.ForeignKey('level.Level', on_delete=models.CASCADE, default=None, null=True)
     teacher=models.ForeignKey('teacher.Teacher', on_delete=models.CASCADE, null=True, default=None)
-    school=models.ForeignKey('school.School', on_delete=models.CASCADE, null=True)
+    school=models.ForeignKey('school.school', on_delete=models.CASCADE, null=True)
     # student=models.ForeignKey('students.Student', on_delete=models.CASCADE)
     coefficient=models.IntegerField()
     animation_key=models.CharField(max_length=100, default=None)

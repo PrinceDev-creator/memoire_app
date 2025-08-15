@@ -8,7 +8,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('note', '0002_remove_note_score'),
-        ('users', '0037_remove_userapp_first_connexion'),
+        # ('users', '0037_remove_userapp_first_connexion'),
     ]
 
     operations = [
@@ -17,9 +17,9 @@ class Migration(migrations.Migration):
             name='is_validated',
             field=models.BooleanField(default=False),
         ),
-        migrations.AddField(
-            model_name='note',
-            name='teacher',
-            field=models.ForeignKey(default=None, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='notes_teachers', to='users.teacher'),
-        ),
+        # migrations.AddField(
+        #     model_name='note',
+        #     name='teacher',
+        #     field=models.ForeignKey(default=None, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='notes_teachers', to='users.teacher'),
+        # ),
     ]

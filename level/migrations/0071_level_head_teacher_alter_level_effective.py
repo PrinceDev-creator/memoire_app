@@ -8,15 +8,15 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('level', '0070_alter_level_effective'),
-        ('users', '0045_alter_teacher_coefficient'),
+        # ('users', '0045_alter_teacher_coefficient'),
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='level',
-            name='head_teacher',
-            field=models.ForeignKey(default=None, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='head_teachers_levels', to='users.teacher'),
-        ),
+        # migrations.AddField(
+        #     model_name='level',
+        #     name='head_teacher',
+        #     field=models.ForeignKey(default=None, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='head_teachers_levels', to='users.teacher'),
+        # ),
         migrations.AlterField(
             model_name='level',
             name='effective',

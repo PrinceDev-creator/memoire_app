@@ -3,7 +3,7 @@ from django.db import models
 class Student(models.Model):
     first_name= models.CharField(max_length=255, default='not defined')
     last_name= models.CharField(max_length=255, default='not defined')
-    school =models.ForeignKey('school.School', on_delete=models.CASCADE, related_name='students', default=None, null=True)
+    school =models.ForeignKey('school.school', on_delete=models.CASCADE, related_name='students', default=None, null=True)
     registration_number=models.IntegerField(default=None, null=True, unique=True)
     # level=models.ForeignKey('level.Level', on_delete=models.CASCADE, related_name='students_level',default=None)
     # year_of_arrival =models.IntegerField(null=True)

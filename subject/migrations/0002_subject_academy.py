@@ -8,7 +8,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('subject', '0001_initial'),
-        ('users', '0039_rename_tutor_tutor_student'),
+        # ('users', '0039_rename_tutor_tutor_student'),
     ]
 
     operations = [

@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
+        migrations.AddField(
             model_name='note',
             name='teacher',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='notes_teachers', to='teacher.teacher'),

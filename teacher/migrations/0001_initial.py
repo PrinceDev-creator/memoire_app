@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('users', '0053_remove_academy_academy_academy_school_name_and_more'),
+        # ('users', '0053_remove_academy_academy_academy_school_name_and_more'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 

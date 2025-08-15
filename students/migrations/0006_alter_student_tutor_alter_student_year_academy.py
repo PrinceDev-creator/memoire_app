@@ -8,15 +8,15 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('students', '0005_alter_student_repeating'),
-        ('users', '0016_teacher_first_name_teacher_last_name_and_more'),
+        # ('users', '0016_teacher_first_name_teacher_last_name_and_more'),
     ]
 
     operations = [
-        migrations.AlterField(
-            model_name='student',
-            name='tutor',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='children', to='users.tutor'),
-        ),
+        # migrations.AlterField(
+        #     model_name='student',
+        #     name='tutor',
+        #     field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='children', to='users.tutor'),
+        # ),
         migrations.AlterField(
             model_name='student',
             name='year_academy',

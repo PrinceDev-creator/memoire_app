@@ -23,9 +23,9 @@ class Migration(migrations.Migration):
             name='effective',
             field=models.IntegerField(default=33),
         ),
-        migrations.AlterField(
-            model_name='level',
-            name='head_teacher',
-            field=models.ForeignKey(default=None, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='head_teachers_levels', to='teacher.teacher'),
-        ),
+        # migrations.AlterField(
+        #     model_name='level',
+        #     name='head_teacher',
+        #     field=models.ForeignKey(default=None, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='head_teachers_levels', to='teacher.teacher'),
+        # ),
     ]

@@ -18,15 +18,15 @@ class Migration(migrations.Migration):
             name='group',
             field=models.CharField(blank=True, default=None, max_length=10, null=True),
         ),
-        migrations.AlterField(
-            model_name='level',
-            name='head_teacher',
-            field=models.ForeignKey(blank=True, default=None, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='head_teachers_levels', to='teacher.teacher'),
-        ),
+        # migrations.AlterField(
+        #     model_name='level',
+        #     name='head_teacher',
+        #     field=models.ForeignKey(blank=True, default=None, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='head_teachers_levels', to='teacher.teacher'),
+        # ),
         migrations.AlterField(
             model_name='level',
             name='school',
-            field=models.ForeignKey(default=None, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='levels', to='school.school'),
+            field=models.ForeignKey(default=None, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='levels', to='school.School'),
         ),
         migrations.AlterField(
             model_name='level',

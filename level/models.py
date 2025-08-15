@@ -7,7 +7,7 @@ class Level(models.Model):
     name=models.CharField(max_length=255)
     group=models.CharField(max_length=10, null=True, default=None, blank=True)
     series=models.CharField(max_length=5, null=True, default=None, blank=True)
-    school=models.ForeignKey('school.School', on_delete=models.CASCADE, related_name='levels', default=None,null=True)
+    school=models.ForeignKey('school.school', on_delete=models.CASCADE, related_name='levels', default=None,null=True)
     # effective=models.IntegerField(default=random.randint(10,50))
     head_teacher=models.ForeignKey('teacher.Teacher', on_delete=models.CASCADE, related_name='head_teachers_levels', null=True,blank=True, default=None)
     class_leader=models.ForeignKey('students.Student', on_delete=models.CASCADE, null=True, blank=True, related_name='level_class_leader')

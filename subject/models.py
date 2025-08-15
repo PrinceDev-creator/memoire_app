@@ -13,7 +13,7 @@ class Subject(models.Model):
 
     name= models.CharField(max_length=100)
     category=models.CharField(max_length=50, default='category')
-    school=models.ForeignKey('school.School', on_delete=models.CASCADE, default=1, null=True)
+    school=models.ForeignKey('school.school', on_delete=models.CASCADE, default=1, null=True)
     pseudo=models.CharField(max_length=100, null=True, blank=True)
     
     def __str__(self):

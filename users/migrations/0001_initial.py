@@ -56,29 +56,29 @@ class Migration(migrations.Migration):
                 ('objects', django.contrib.auth.models.UserManager()),
             ],
         ),
-        migrations.CreateModel(
-            name='Academy',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('is_academy', models.BooleanField(default=True)),
-                ('academy', models.CharField(max_length=100)),
-                ('user', models.OneToOneField(default=None, on_delete=django.db.models.deletion.CASCADE, related_name='academy', to='users.userapp')),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Teacher',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('starting_year_in_academy', models.DateField(default='')),
-                ('title', models.CharField(blank=True, default='title', max_length=100, null=True)),
-                ('activate', models.BooleanField(default=False)),
-                ('is_teacher', models.BooleanField(default=True)),
-                ('level', models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, related_name='teachers_level', to='level.level')),
-                ('academy', models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, related_name='teachers_academy', to='school.School')),
-                ('subject', models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, related_name='teachers_subject', to='subject.subject')),
-            ],
-            options={
-                'constraints': [models.UniqueConstraint(fields=('level', 'subject'), name='unique_teacher_per_subject_per_level')],
-            },
-        ),
+        # migrations.CreateModel(
+        #     name='Academy',
+        #     fields=[
+        #         ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+        #         ('is_academy', models.BooleanField(default=True)),
+        #         ('academy', models.CharField(max_length=100)),
+        #         ('user', models.OneToOneField(default=None, on_delete=django.db.models.deletion.CASCADE, related_name='academy', to='users.userapp')),
+        #     ],
+        # ),
+        # migrations.CreateModel(
+        #     name='Teacher',
+        #     fields=[
+        #         ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+        #         ('starting_year_in_academy', models.DateField(default='')),
+        #         ('title', models.CharField(blank=True, default='title', max_length=100, null=True)),
+        #         ('activate', models.BooleanField(default=False)),
+        #         ('is_teacher', models.BooleanField(default=True)),
+        #         ('level', models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, related_name='teachers_level', to='level.level')),
+        #         ('academy', models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, related_name='teachers_academy', to='school.school')),
+        #         ('subject', models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, related_name='teachers_subject', to='subject.subject')),
+        #     ],
+        #     options={
+        #         'constraints': [models.UniqueConstraint(fields=('level', 'subject'), name='unique_teacher_per_subject_per_level')],
+        #     },
+        # ),
     ]

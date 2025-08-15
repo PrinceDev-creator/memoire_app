@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
         ('note', '0007_rename_quiz_note_score'),
         ('students', '0013_remove_student_unique_registration_number_and_more'),
         ('subject', '0004_alter_subject_academy'),
-        ('users', '0045_alter_teacher_coefficient'),
+        # ('users', '0045_alter_teacher_coefficient'),
     ]
 
     operations = [
@@ -24,13 +24,13 @@ class Migration(migrations.Migration):
             name='academy',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='school.School'),
         ),
-        migrations.AlterField(
-            model_name='note',
-            name='teacher',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='notes_teachers', to='users.teacher'),
-        ),
+        # migrations.AlterField(
+        #     model_name='note',
+        #     name='teacher',
+        #     field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='notes_teachers', to='users.teacher'),
+        # ),
         migrations.AddConstraint(
             model_name='note',
-            constraint=models.UniqueConstraint(fields=('student', 'level', 'subject', 'teacher', 'academy', 'cycle', 'score'), name='unique_note'),
+            constraint=models.UniqueConstraint(fields=('student', 'level', 'subject', 'academy', 'cycle', 'score'), name='unique_note'),
         ),
     ]

@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
         ('note', '0003_note_is_validated_note_teacher'),
         ('students', '0008_remove_student_name_student_first_name_and_more'),
         ('subject', '0001_initial'),
-        ('users', '0037_remove_userapp_first_connexion'),
+        # ('users', '0037_remove_userapp_first_connexion'),
     ]
 
     operations = [
@@ -24,13 +24,13 @@ class Migration(migrations.Migration):
             name='academy',
             field=models.ForeignKey(default=20, on_delete=django.db.models.deletion.CASCADE, to='school.School'),
         ),
-        migrations.AlterField(
-            model_name='note',
-            name='teacher',
-            field=models.ForeignKey(default=5927, on_delete=django.db.models.deletion.CASCADE, related_name='notes_teachers', to='users.teacher'),
-        ),
+        # migrations.AlterField(
+        #     model_name='note',
+        #     name='teacher',
+        #     field=models.ForeignKey(default=5927, on_delete=django.db.models.deletion.CASCADE, related_name='notes_teachers', to='users.teacher'),
+        # ),
         migrations.AddConstraint(
             model_name='note',
-            constraint=models.UniqueConstraint(fields=('student', 'level', 'subject', 'teacher', 'academy', 'cycle', 'quiz'), name='unique_note'),
+            constraint=models.UniqueConstraint(fields=('student', 'level', 'subject', 'academy', 'cycle', 'quiz'), name='unique_note'),
         ),
     ]
