@@ -22,7 +22,7 @@ class UserApp(AbstractUser):
     is_teacher= models.BooleanField(default=False)
     is_tutor= models.BooleanField(default=False)
     active=models.BooleanField(default=False)
-    connexion_key=models.CharField(null=True)
+    connexion_key=models.CharField(null=True, default=None)
     # teacher=models.ForeignKey('users.Teacher', on_delete=models.CASCADE, related_name='users-teacher', null=True, to_field='Teacher.teacher_key')
     # tutor=models.ForeignKey('users.Tutor', on_delete=models.CASCADE, related_name='users-tutor', null=True, to_field='Tutor.student_key')
     # # USERNAME_FIELD = "email"
