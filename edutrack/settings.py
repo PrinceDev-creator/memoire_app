@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 from decouple import config
+import dj_database_url
 # import environ
 
 # env=environ.Env()
@@ -190,17 +191,22 @@ WSGI_APPLICATION = 'edutrack.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'oju_db',
-        'USER': 'oju_db_admin',
-        'PASSWORD':'ojuadmin90',
-        'HOST':'localhost',
-        'PORT': '5432'
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'oju_db',
+#         'USER': 'oju_db_admin',
+#         'PASSWORD':'ojuadmin90',
+#         'HOST':'localhost',
+#         'PORT': '5432'
+#     }
+# }
 
+DATABASES = {
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL'),
+    )    
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

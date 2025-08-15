@@ -18,3 +18,5 @@ django-seed
 Babel
 drf-yasg
 xhtml2pdf
+dj-database-url
+gunicorn
